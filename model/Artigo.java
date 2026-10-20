@@ -9,15 +9,16 @@ public class Artigo {
     private Long id;
 
     @ManyToOne
-    private Localizacao localizacao;
+    private Local local;
 
     private String titulo;
     private String resumo;
+
     @Lob
     private String corpo;
 
     @Enumerated(EnumType.STRING)
-    private Area areaAplicacao;
+    private AreaAplicacao areaAplicacao;
 
     @Enumerated(EnumType.STRING)
     private StatusArtigo status;

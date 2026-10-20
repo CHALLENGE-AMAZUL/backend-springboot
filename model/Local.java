@@ -4,14 +4,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
-public class Localizacao {
+public class Local {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //Dúvida sobre nome - por conta da 3FN
+    private String nome;
+
+    private String cidade;
 
     private String codigoPais;
     private Double latitude;

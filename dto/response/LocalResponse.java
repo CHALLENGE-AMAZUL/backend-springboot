@@ -1,4 +1,4 @@
 package com.amazul.fiap.api_springboot.dto.response;
 
-public record ArtigoResumidoResponse() {
+public record LocalResponse() {
 }
