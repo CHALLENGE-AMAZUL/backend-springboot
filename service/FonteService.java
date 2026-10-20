@@ -7,4 +7,6 @@ import org.springframework.data.domain.Page;
 public interface FonteService {
     Fonte findById(Long id);
     Page<FonteResponse> listarTodos(int pagina, int tamanho);
+
+    void apagar(Long id);
 }

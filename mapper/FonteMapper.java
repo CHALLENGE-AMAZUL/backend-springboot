@@ -11,9 +11,9 @@ public final class FonteMapper {
     }
 
     public static FonteResponse toResponse(Fonte fonte){
-        return new();
+        return new FonteResponse(fonte.getId(), fonte.getTitulo(), fonte.getUrl(), fonte.getDataConsulta());
     }
-    public static List<FonteResponse> toResponse(Fonte fonte){
-        return new();
+    public static List<FonteResponse> toResponse(List<Fonte> fontes){
+        return fontes.stream().map(FonteMapper::toResponse).toList();
     }
 }

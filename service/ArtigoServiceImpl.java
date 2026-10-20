@@ -1,10 +1,13 @@
 package com.amazul.fiap.api_springboot.service;
 
+import com.amazul.fiap.api_springboot.dto.request.ArtigoRequest;
 import com.amazul.fiap.api_springboot.dto.response.ArtigoResponse;
 import com.amazul.fiap.api_springboot.exception.ResourceNotFoundException;
+import com.amazul.fiap.api_springboot.mapper.ArtigoMapper;
 import com.amazul.fiap.api_springboot.model.Artigo;
 import com.amazul.fiap.api_springboot.repository.ArtigoRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,10 +19,26 @@ public class ArtigoServiceImpl implements ArtigoService{
     }
     @Override
     public Page<ArtigoResponse> listarTodos(int pagina, int tamanho) {
-        return null;
+        Pageable pageable = Pageable.ofSize(tamanho).withPage(pagina);
+        return repository.findAll(pageable).map(ArtigoMapper::toResponse);
     }
 
+    @Override
     public Artigo findById(Long id){
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Artigo", id));
+    }
+
+    public ArtigoResponse criar(ArtigoRequest request){
+        Artigo artigo = new Artigo();
+        artigo.setId(null);
+
+
+        return ArtigoMapper.toResponse(artigo);
+    }
+
+    @Override
+    public void apagar(Long id) {
+        Artigo artigo = findById(id);
+        repository.delete(artigo);
     }
 }

@@ -1,15 +1,20 @@
 package com.amazul.fiap.api_springboot.controller;
 
 import com.amazul.fiap.api_springboot.dto.request.FonteRequest;
+import com.amazul.fiap.api_springboot.dto.request.LocalRequest;
 import com.amazul.fiap.api_springboot.dto.response.ArtigoResponse;
 import com.amazul.fiap.api_springboot.dto.response.LocalResponse;
 import com.amazul.fiap.api_springboot.dto.response.PageResponse;
 import com.amazul.fiap.api_springboot.service.LocalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/locais")
@@ -30,21 +35,26 @@ public class LocalController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Lista único local de artigo com parâmetro id")
-    public ResponseEntity<LocalResponse> listarUnico(@Validated @PathVariable Long id){
+    public ResponseEntity<LocalResponse> listarUnico(@PathVariable @Validated @Positive Long id){
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping
-    public ResponseEntity<LocalResponse> criar(){
-
+    @Operation(summary = "Criar novo local de artigo")
+    public ResponseEntity<LocalResponse> criar(@RequestBody @Valid LocalRequest request){
+        return ResponseEntity.created(URI.create("/api/locais")).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ArtigoResponse> atualizar(@Validated @PathVariable Long id, @RequestBody @Valid FonteRequest request){
-
+    @Operation(summary = "Atualizar local existente")
+    public ResponseEntity<LocalResponse> atualizar(@PathVariable @Validated @Positive Long id, @RequestBody @Valid LocalRequest request){
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> apagar(@Validated @PathVariable Long id){
-
+    @Operation(summary = "Deletar local existente")
+    public ResponseEntity<Void> apagar(@PathVariable @Validated @Positive Long id){
+        localService.apagar(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,14 +1,18 @@
 package com.amazul.fiap.api_springboot.controller;
 
-import com.amazul.fiap.api_springboot.dto.request.FonteRequest;
+import com.amazul.fiap.api_springboot.dto.request.ArtigoRequest;
 import com.amazul.fiap.api_springboot.dto.response.ArtigoResponse;
 import com.amazul.fiap.api_springboot.dto.response.PageResponse;
 import com.amazul.fiap.api_springboot.service.ArtigoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/artigos")
@@ -27,23 +31,28 @@ public class ArtigoController {
         return PageResponse.from(artigoService.listarTodos(pagina, tamanho));
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     @Operation(summary = "Lista único artigo com parâmetro id")
-    public ResponseEntity<ArtigoResponse> listarUnico(@Validated @PathVariable Long id){
+    public ResponseEntity<ArtigoResponse> listarUnico(@PathVariable @Validated @Positive Long id){
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping
-    public ResponseEntity<ArtigoResponse> criar(){
-
+    @Operation(summary = "Criar novo artigo")
+    public ResponseEntity<ArtigoResponse> criar(@RequestBody @Valid ArtigoRequest request){
+        return ResponseEntity.created(URI.create("/api/artigos")).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ArtigoResponse> atualizar(@Validated @PathVariable Long id, @RequestBody @Valid FonteRequest request){
-
+    @Operation(summary = "Atualizar artigo existente")
+    public ResponseEntity<ArtigoResponse> atualizar(@PathVariable @Validated @Positive Long id, @RequestBody @Valid ArtigoRequest request){
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> apagar(@Validated @PathVariable Long id){
-
+    @Operation(summary = "Deletar artigo existente")
+    public ResponseEntity<Void> apagar(@PathVariable @Validated @Positive Long id){
+        artigoService.apagar(id);
+        return ResponseEntity.noContent().build();
     }
 }

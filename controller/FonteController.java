@@ -8,9 +8,12 @@ import com.amazul.fiap.api_springboot.service.FonteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/fontes")
@@ -31,23 +34,27 @@ public class FonteController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Lista única fonte com parâmetro id")
-    public ResponseEntity<FonteResponse> listarUnica(@Validated @PathVariable Long id){
+    public ResponseEntity<FonteResponse> listarUnica(@PathVariable @Validated @Positive Long id){
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping
     @Operation(summary = "Criação de fonte de artigo")
-    public ResponseEntity<FonteResponse> criar(){
-
+    public ResponseEntity<FonteResponse> criar(@RequestBody @Valid FonteRequest request){
+        return ResponseEntity.created(URI.create("/api/fontes")).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ArtigoResponse> atualizar(@Validated @PathVariable Long id, @RequestBody @Valid FonteRequest request){
-
+    @Operation(summary = "Atualizar fonte de artigo existente")
+    public ResponseEntity<FonteResponse> atualizar(@PathVariable @Validated @Positive Long id, @RequestBody @Valid FonteRequest request){
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> apagar(@Validated @PathVariable Long id){
-
+    @Operation(summary = "Deletar uma fonte existente")
+    public ResponseEntity<Void> apagar(@PathVariable @Validated @Positive Long id){
+        fonteService.apagar(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

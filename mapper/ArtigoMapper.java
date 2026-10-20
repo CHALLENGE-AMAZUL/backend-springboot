@@ -13,7 +13,7 @@ public final class ArtigoMapper {
         return new();
     }
 
-    public static List<ArtigoResponse> toResponse(Artigo artigo){
-        return new();
+    public static List<ArtigoResponse> toResponse(List<Artigo> artigos){
+        return artigos;
     }
 }

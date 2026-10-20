@@ -1,6 +1,5 @@
 package com.amazul.fiap.api_springboot.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -22,8 +21,6 @@ public class ArtigoFonte {
     private String observacao;
 
 }
-
-
 
 //    @Column(name = "artigo_id")
 //    private Long artigoId;
