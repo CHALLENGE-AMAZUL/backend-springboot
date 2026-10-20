@@ -1,14 +1,14 @@
 package com.amazul.fiap.api_springboot.controller;
 
+import com.amazul.fiap.api_springboot.dto.request.FonteRequest;
 import com.amazul.fiap.api_springboot.dto.response.ArtigoResponse;
 import com.amazul.fiap.api_springboot.dto.response.PageResponse;
 import com.amazul.fiap.api_springboot.service.ArtigoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/artigos")
@@ -25,5 +25,25 @@ public class ArtigoController {
     public PageResponse<ArtigoResponse> listar(@RequestParam(required = false, defaultValue = "0") Integer pagina,
                                                @RequestParam(required = false, defaultValue = "10") Integer tamanho){
         return PageResponse.from(artigoService.listarTodos(pagina, tamanho));
+    }
+
+    @GetMapping
+    @Operation(summary = "Lista único artigo com parâmetro id")
+    public ResponseEntity<ArtigoResponse> listarUnico(@Validated @PathVariable Long id){
+    }
+
+    @PostMapping
+    public ResponseEntity<ArtigoResponse> criar(){
+
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ArtigoResponse> atualizar(@Validated @PathVariable Long id, @RequestBody @Valid FonteRequest request){
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> apagar(@Validated @PathVariable Long id){
+
     }
 }

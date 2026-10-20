@@ -1,13 +1,15 @@
 package com.amazul.fiap.api_springboot.controller;
 
+import com.amazul.fiap.api_springboot.dto.request.FonteRequest;
+import com.amazul.fiap.api_springboot.dto.response.ArtigoResponse;
 import com.amazul.fiap.api_springboot.dto.response.LocalResponse;
 import com.amazul.fiap.api_springboot.dto.response.PageResponse;
 import com.amazul.fiap.api_springboot.service.LocalService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/locais")
@@ -20,8 +22,29 @@ public class LocalController {
     }
 
     @GetMapping
+    @Operation(summary = "Lista todos os locais com paginação")
     public PageResponse<LocalResponse> listar(@RequestParam(required = false, defaultValue = "0") Integer pagina,
                                               @RequestParam(required = false, defaultValue = "10") Integer tamanho){
         return PageResponse.from(localService.listarTodos(pagina, tamanho));
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Lista único local de artigo com parâmetro id")
+    public ResponseEntity<LocalResponse> listarUnico(@Validated @PathVariable Long id){
+    }
+
+    @PostMapping
+    public ResponseEntity<LocalResponse> criar(){
+
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ArtigoResponse> atualizar(@Validated @PathVariable Long id, @RequestBody @Valid FonteRequest request){
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> apagar(@Validated @PathVariable Long id){
+
     }
 }

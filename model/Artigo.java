@@ -8,8 +8,8 @@ public class Artigo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Local local;
+    @Enumerated(EnumType.STRING)
+    private AreaAplicacao areaAplicacao;
 
     private String titulo;
     private String resumo;
@@ -17,8 +17,8 @@ public class Artigo {
     @Lob
     private String corpo;
 
-    @Enumerated(EnumType.STRING)
-    private AreaAplicacao areaAplicacao;
+    @ManyToOne
+    private Local local;
 
     @Enumerated(EnumType.STRING)
     private StatusArtigo status;

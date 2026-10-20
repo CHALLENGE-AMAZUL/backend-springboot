@@ -10,4 +10,8 @@ public final class LocalMapper {
     public static LocalResponse toResponse(LocalResponse localResponse){
         return new();
     }
+
+    public static List<LocalResponse> toResponse(LocalResponse localResponse){
+        return new();
+    }
 }
