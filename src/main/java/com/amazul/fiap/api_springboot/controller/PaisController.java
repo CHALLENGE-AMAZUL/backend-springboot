@@ -25,7 +25,7 @@ public class PaisController {
 
     @GetMapping
     @Operation(summary = "Retorna uma lista com todos os países e seus Códigos", description = "Exemplo: BR - Brasil")
-    public List<PaisCodigoResponse> listarPaises(){
+    public List<String> listarPaises(){
         return paisService.listarTodos();
     }
 

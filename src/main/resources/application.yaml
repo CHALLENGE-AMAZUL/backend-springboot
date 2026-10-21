@@ -23,4 +23,4 @@ spring:
 api:
   country:
     base-url: https://api.countrystatecity.in/v1
-    key: ${COUNTRY_API_KEY:sua_chave_aqui}
+    key: ${API_COUNTRY_KEY}

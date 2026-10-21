@@ -16,8 +16,12 @@ public class PaisServiceImpl implements PaisService{
     }
 
     @Override
-    public List<PaisCodigoResponse> listarTodos() {
-        return countryStateCityClient.listarPaises();
+    public List<String> listarTodos() {
+        List<PaisCodigoResponse> paises = countryStateCityClient.listarPaises();
+
+        return paises.stream()
+                .map( p -> p.codigoPais() + " - "  + p.nomePais())
+                .toList();
     }
 
     @Override

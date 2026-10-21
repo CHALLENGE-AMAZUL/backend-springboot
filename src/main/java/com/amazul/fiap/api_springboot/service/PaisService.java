@@ -6,6 +6,6 @@ import com.amazul.fiap.api_springboot.dto.response.PaisDetalhesResponse;
 import java.util.List;
 
 public interface PaisService {
-    List<PaisCodigoResponse> listarTodos();
+    List<String> listarTodos();
     PaisDetalhesResponse exibirPais(String codigoPais);
 }
