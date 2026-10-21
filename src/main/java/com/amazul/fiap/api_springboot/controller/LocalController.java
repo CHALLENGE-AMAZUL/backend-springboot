@@ -1,10 +1,15 @@
 package com.amazul.fiap.api_springboot.controller;
 
+import com.amazul.fiap.api_springboot.dto.errors.ErrorResponse;
 import com.amazul.fiap.api_springboot.dto.request.LocalRequest;
 import com.amazul.fiap.api_springboot.dto.response.LocalResponse;
 import com.amazul.fiap.api_springboot.dto.response.PageResponse;
 import com.amazul.fiap.api_springboot.service.LocalService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -25,7 +30,27 @@ public class LocalController {
     }
 
     @GetMapping
-    @Operation(summary = "Lista todos os locais com paginação")
+    @Operation(
+            summary = "Lista todos os locais com paginação",
+            description = "Retorna uma lista paginada de instalações e locais relacionados à tecnologia nuclear com suas coordenadas."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Página de locais retornada com sucesso",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = PageResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Parâmetros de requisição inválidos",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro interno no servidor",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            )
+    })
     public PageResponse<LocalResponse> listar(@RequestParam(required = false, defaultValue = "0") Integer pagina,
                                               @RequestParam(required = false, defaultValue = "10") Integer tamanho){
         return PageResponse.from(localService.listarTodos(pagina, tamanho));
@@ -51,7 +76,28 @@ public class LocalController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Deletar local existente")
+    @Operation(
+            summary = "Deletar local existente",
+            description = "Remove definitivamente um ponto geográfico ou instalação da base de dados."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Local excluído com sucesso"),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "ID do local inválido ou não positivo",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Local não encontrado para o ID informado",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro interno no servidor",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            )
+    })
     public ResponseEntity<Void> apagar(@PathVariable @Validated @Positive Long id){
         localService.apagar(id);
         return ResponseEntity.noContent().build();

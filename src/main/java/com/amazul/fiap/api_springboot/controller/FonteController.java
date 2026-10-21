@@ -1,10 +1,15 @@
 package com.amazul.fiap.api_springboot.controller;
 
+import com.amazul.fiap.api_springboot.dto.errors.ErrorResponse;
 import com.amazul.fiap.api_springboot.dto.request.FonteRequest;
 import com.amazul.fiap.api_springboot.dto.response.FonteResponse;
 import com.amazul.fiap.api_springboot.dto.response.PageResponse;
 import com.amazul.fiap.api_springboot.service.FonteService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -25,7 +30,27 @@ public class FonteController {
     }
 
     @GetMapping
-    @Operation(summary = "Lista todas as fontes com paginação")
+    @Operation(
+            summary = "Lista todas as fontes com paginação",
+            description = "Retorna uma página de fontes de referência cadastradas, indicando os títulos dos artigos vinculados a cada uma."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Página de fontes recuperada com sucesso",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = PageResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Parâmetros de paginação inválidos",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro interno no servidor",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            )
+    })
     public PageResponse<FonteResponse> listar(@RequestParam(required = false, defaultValue = "0") Integer pagina,
                                               @RequestParam(required = false, defaultValue = "10") Integer tamanho){
         return PageResponse.from(fonteService.listarTodos(pagina, tamanho));
@@ -51,7 +76,28 @@ public class FonteController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Deletar uma fonte existente")
+    @Operation(
+            summary = "Deletar uma fonte existente",
+            description = "Exclui definitivamente uma fonte de referência científica do sistema."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Fonte deletada com sucesso"),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "ID informado é inválido ou menor/igual a zero",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Fonte não encontrada para o ID informado",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro interno no servidor",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            )
+    })
     public ResponseEntity<Void> apagar(@PathVariable @Validated @Positive Long id){
         fonteService.apagar(id);
         return ResponseEntity.noContent().build();
