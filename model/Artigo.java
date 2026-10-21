@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -29,6 +31,9 @@ public class Artigo {
 
     @Enumerated(EnumType.STRING)
     private StatusArtigo status;
+
+    @OneToMany(mappedBy = "artigo")
+    List<ArtigoFonte> referencias;
 
     public void setStatus(StatusArtigo status) {
         if(this.status == null && status != StatusArtigo.RASCUNHO){

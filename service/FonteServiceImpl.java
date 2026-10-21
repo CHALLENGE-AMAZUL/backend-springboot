@@ -1,5 +1,6 @@
 package com.amazul.fiap.api_springboot.service;
 
+import com.amazul.fiap.api_springboot.dto.request.FonteRequest;
 import com.amazul.fiap.api_springboot.dto.response.FonteResponse;
 import com.amazul.fiap.api_springboot.exception.ResourceNotFoundException;
 import com.amazul.fiap.api_springboot.mapper.FonteMapper;
@@ -26,6 +27,19 @@ public class FonteServiceImpl implements FonteService {
     @Override
     public Fonte findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fonte", id));
+    }
+
+    @Override
+    public FonteResponse criar(FonteRequest request) {
+        Fonte fonte = new Fonte();
+        fonte.setId(null);
+        return FonteMapper.toResponse(fonte);
+    }
+
+    @Override
+    public FonteResponse atualizar(Long id, FonteRequest request) {
+        Fonte fonte = findById(id);
+        return null;
     }
 
     @Override

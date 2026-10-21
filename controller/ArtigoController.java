@@ -37,9 +37,18 @@ public class ArtigoController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/{titulo}")
+    @Operation(summary = "Lista todos os artigos que contenham o título inserido")
+    public PageResponse<ArtigoResponse> exibirPorTitulo(@RequestParam(required = true) String titulo,
+                                                        @RequestParam(required = false, defaultValue = "0") Integer pagina,
+                                                        @RequestParam(required = false, defaultValue = "10") Integer tamanho){
+        return PageResponse.from(artigoService.buscarPorTitulo(titulo, pagina, tamanho));
+    }
+
     @PostMapping
     @Operation(summary = "Criar novo artigo")
     public ResponseEntity<ArtigoResponse> criar(@RequestBody @Valid ArtigoRequest request){
+        ArtigoResponse artigo = artigoService.criar(request);
         return ResponseEntity.created(URI.create("/api/artigos")).build();
     }
 

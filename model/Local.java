@@ -22,6 +22,7 @@ public class Local {
 
     private String cidade;
 
+    private String nomePais;
     private String codigoPais;
     private Double latitude;
     private Double longitude;

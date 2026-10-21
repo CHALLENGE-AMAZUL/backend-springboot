@@ -1,7 +1,6 @@
 package com.amazul.fiap.api_springboot.controller;
 
 import com.amazul.fiap.api_springboot.dto.request.FonteRequest;
-import com.amazul.fiap.api_springboot.dto.response.ArtigoResponse;
 import com.amazul.fiap.api_springboot.dto.response.FonteResponse;
 import com.amazul.fiap.api_springboot.dto.response.PageResponse;
 import com.amazul.fiap.api_springboot.service.FonteService;
@@ -41,6 +40,7 @@ public class FonteController {
     @PostMapping
     @Operation(summary = "Criação de fonte de artigo")
     public ResponseEntity<FonteResponse> criar(@RequestBody @Valid FonteRequest request){
+        FonteResponse fonte = fonteService.criar(request);
         return ResponseEntity.created(URI.create("/api/fontes")).build();
     }
 

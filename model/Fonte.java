@@ -1,15 +1,13 @@
 package com.amazul.fiap.api_springboot.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,5 +23,8 @@ public class Fonte {
 
     @NotBlank(message = "URL deve ser inserida.")
     private String url;
+
+    @OneToMany(mappedBy = "fonte")
+    List<ArtigoFonte> artigos;
     private LocalDate dataConsulta;
 }

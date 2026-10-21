@@ -1,5 +1,6 @@
 package com.amazul.fiap.api_springboot.service;
 
+import com.amazul.fiap.api_springboot.dto.request.LocalRequest;
 import com.amazul.fiap.api_springboot.dto.response.LocalResponse;
 import com.amazul.fiap.api_springboot.exception.ResourceNotFoundException;
 import com.amazul.fiap.api_springboot.mapper.LocalMapper;
@@ -22,8 +23,21 @@ public class LocalServiceImpl implements LocalService{
         Pageable pageable = Pageable.ofSize(tamanho).withPage(pagina);
         return repository.findAll(pageable).map(LocalMapper::toResponse);
     }
+
     public Local findById(Long id){
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Local", id));
+    }
+
+    @Override
+    public LocalResponse criar(LocalRequest request) {
+        Local local = new Local();
+        local.setId(null);
+        return LocalMapper.toResponse(local);
+    }
+
+    @Override
+    public LocalResponse atualizar(Long id, LocalRequest request) {
+        return null;
     }
 
     @Override

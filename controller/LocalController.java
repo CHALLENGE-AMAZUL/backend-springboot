@@ -1,8 +1,6 @@
 package com.amazul.fiap.api_springboot.controller;
 
-import com.amazul.fiap.api_springboot.dto.request.FonteRequest;
 import com.amazul.fiap.api_springboot.dto.request.LocalRequest;
-import com.amazul.fiap.api_springboot.dto.response.ArtigoResponse;
 import com.amazul.fiap.api_springboot.dto.response.LocalResponse;
 import com.amazul.fiap.api_springboot.dto.response.PageResponse;
 import com.amazul.fiap.api_springboot.service.LocalService;
@@ -42,6 +40,7 @@ public class LocalController {
     @PostMapping
     @Operation(summary = "Criar novo local de artigo")
     public ResponseEntity<LocalResponse> criar(@RequestBody @Valid LocalRequest request){
+        LocalResponse local = localService.criar(request);
         return ResponseEntity.created(URI.create("/api/locais")).build();
     }
 
