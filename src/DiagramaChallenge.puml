@@ -2,17 +2,13 @@
 skinparam classAttributeIconSize 0
 hide empty members
 
-package amazul.fiap.api_springboot.model {
+package com-amazul-fiap-api_springboot-model {
 
   class Artigo {
     - Long id
-    - AreaAplicacao areaAplicacao
     - String titulo
     - String resumo
     - String corpo
-    - Local local
-    - StatusArtigo status
-    - List<ArtigoFonte> referencias
     + void setStatus(StatusArtigo)
   }
 
@@ -20,7 +16,6 @@ package amazul.fiap.api_springboot.model {
     - Long id
     - String titulo
     - String url
-    - List<Artigo> artigos
     - LocalDate dataConsulta
   }
 
@@ -34,10 +29,8 @@ package amazul.fiap.api_springboot.model {
     - Double longitude
   }
 
-  class ArtigoFonte <<Entity>>{
+  class ArtigoFonte {
     - Long id
-    - Artigo artigo
-    - Fonte fonte
     - String observacao
   }
 
@@ -56,13 +49,14 @@ package amazul.fiap.api_springboot.model {
   }
 
   ' Relacionamentos
-  Artigo "1" --> "0..1" Local : local
-  Artigo "1" *-- "0..*" ArtigoFonte : referencias
-  ArtigoFonte "0..*" --> "1" Artigo : artigo
-  ArtigoFonte "0..*" --> "1" Fonte : fonte
+  Artigo "*" --> "0..1" Local : local
+  Artigo "1" <-- "0..*" ArtigoFonte : artigo
+  Artigo "1" --> "0..*" ArtigoFonte : referencias
+  Fonte "1" <-- "0..*" ArtigoFonte : fonte
   Fonte "1" --> "0..*" ArtigoFonte : artigos
-  Artigo --> AreaAplicacao
-  Artigo --> StatusArtigo
+
+  Artigo --> AreaAplicacao : areaAplicacao
+  Artigo --> StatusArtigo : status
 
 }
 @enduml
