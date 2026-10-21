@@ -1,0 +1,68 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide empty members
+
+package amazul.fiap.api_springboot.model {
+
+  class Artigo {
+    - Long id
+    - AreaAplicacao areaAplicacao
+    - String titulo
+    - String resumo
+    - String corpo
+    - Local local
+    - StatusArtigo status
+    - List<ArtigoFonte> referencias
+    + void setStatus(StatusArtigo)
+  }
+
+  class Fonte {
+    - Long id
+    - String titulo
+    - String url
+    - List<Artigo> artigos
+    - LocalDate dataConsulta
+  }
+
+  class Local {
+    - Long id
+    - String nome
+    - String cidade
+    - String nomePais
+    - String codigoPais
+    - Double latitude
+    - Double longitude
+  }
+
+  class ArtigoFonte <<Entity>>{
+    - Long id
+    - Artigo artigo
+    - Fonte fonte
+    - String observacao
+  }
+
+  enum StatusArtigo {
+    RASCUNHO
+    PUBLICADO
+    ARQUIVADO
+  }
+
+  enum AreaAplicacao {
+    ENERGIA
+    SAUDE
+    AGRICULTURA
+    INDUSTRIA
+    PESQUISA
+  }
+
+  ' Relacionamentos
+  Artigo "1" --> "0..1" Local : local
+  Artigo "1" *-- "0..*" ArtigoFonte : referencias
+  ArtigoFonte "0..*" --> "1" Artigo : artigo
+  ArtigoFonte "0..*" --> "1" Fonte : fonte
+  Fonte "1" --> "0..*" ArtigoFonte : artigos
+  Artigo --> AreaAplicacao
+  Artigo --> StatusArtigo
+
+}
+@enduml
