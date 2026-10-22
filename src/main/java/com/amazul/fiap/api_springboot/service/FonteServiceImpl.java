@@ -26,8 +26,6 @@ public class FonteServiceImpl implements FonteService {
         return repository.findAll(pageable).map(FonteMapper::toResponse);
     }
 
-
-
     @Override
     public Fonte findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fonte", id));
@@ -41,6 +39,8 @@ public class FonteServiceImpl implements FonteService {
         fonte.setTitulo(request.titulo());
         fonte.setUrl(request.url());
         fonte.setAtualizadoEm(LocalDate.now());
+
+        repository.save(fonte);
         return FonteMapper.toResponse(fonte);
     }
 
@@ -48,7 +48,9 @@ public class FonteServiceImpl implements FonteService {
     public FonteResponse atualizar(Long id, FonteRequest request) {
         Fonte fonte = findById(id);
 
+        fonte.setTitulo(request.titulo());
         fonte.setAtualizadoEm(LocalDate.now());
+
         return FonteMapper.toResponse(fonte);
     }
 

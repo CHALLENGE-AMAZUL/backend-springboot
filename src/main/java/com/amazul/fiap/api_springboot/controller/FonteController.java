@@ -72,8 +72,7 @@ public class FonteController {
     @PutMapping("/{id}")
     @Operation(summary = "Atualizar fonte de artigo existente")
     public ResponseEntity<FonteResponse> atualizar(@PathVariable @Validated @Positive Long id, @RequestBody @Valid FonteRequest request){
-        FonteResponse fonte = fonteService.atualizar(id, request);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(fonteService.atualizar(id, request));
     }
 
     @DeleteMapping("/{id}")

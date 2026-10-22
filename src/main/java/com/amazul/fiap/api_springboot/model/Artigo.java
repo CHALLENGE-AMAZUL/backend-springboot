@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,17 +24,23 @@ public class Artigo {
     private String titulo;
     private String resumo;
 
-    @Lob
-    private String corpo;
+    private String aplicacaoReal;
+    private String impactoSociedade;
+    //Antigo 'corpo' era @Lob
+    //Pensando em desmembrar corpo em Problema, AplicacaoReal - no cotidiano, sociedade, e beneficio.
 
     @ManyToOne
     private Local local;
 
     @Enumerated(EnumType.STRING)
-    private StatusArtigo status;
+    private StatusArtigo status = StatusArtigo.RASCUNHO;
 
-    @OneToMany(mappedBy = "artigo")
-    List<ArtigoFonte> referencias;
+    @OneToMany(
+            mappedBy = "artigo",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<ArtigoFonte> referencias = new ArrayList<>();
 
     public void setStatus(StatusArtigo status) {
         if(this.status == null && status != StatusArtigo.RASCUNHO){

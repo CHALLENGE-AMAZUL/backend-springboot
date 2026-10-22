@@ -11,12 +11,14 @@ public record ArtigoResponse(
         @Schema(description = "Área de aplicação da tecnologia nuclear", example = "SAUDE", allowableValues = {"ENERGIA", "SAUDE", "AGRICULTURA", "INDUSTRIA", "PESQUISA"})
         String areaAplicacao,
 
+        String titulo,
         String resumo,
 
-        String corpo,
+        String aplicacaoReal,
+        String impactoSociedade,
 
-        String nomeLocal,//pode ser nulo
-        String paisLocal,//pode ser nulo
+//        String nomeLocal,//pode ser nulo
+//        String paisLocal,//pode ser nulo
 
         String status,
 

@@ -34,10 +34,6 @@ public class LocalServiceImpl implements LocalService{
     @Override
     public LocalResponse criar(LocalRequest request) {
         Local local = new Local();
-        local.setId(null);
-
-        local.setNome(request.nome());
-
         String codigoIso2 = request.codigoPais();
 
         PaisDetalhesResponse infoPais =  paisService.exibirPais(codigoIso2);
@@ -46,17 +42,22 @@ public class LocalServiceImpl implements LocalService{
             return null;
         }
 
+        local.setId(null);
+        local.setNome(request.nome());
         local.setCodigoPais(codigoIso2);
         local.setNomePais(infoPais.nomePais());
         local.setLatitude(infoPais.latitude());
         local.setLongitude(infoPais.longitude());
 
+        repository.save(local);
         return LocalMapper.toResponse(local);
     }
 
     @Override
     public LocalResponse atualizar(Long id, LocalRequest request) {
-        return null;
+        Local local = findById(id);
+        //Não sei se será necessário no inicio
+        return LocalMapper.toResponse(local);
     }
 
     @Override

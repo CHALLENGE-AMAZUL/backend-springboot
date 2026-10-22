@@ -6,6 +6,7 @@ import com.amazul.fiap.api_springboot.dto.response.PageResponse;
 import com.amazul.fiap.api_springboot.exception.ResourceNotFoundException;
 import com.amazul.fiap.api_springboot.mapper.ArtigoMapper;
 import com.amazul.fiap.api_springboot.model.Artigo;
+import com.amazul.fiap.api_springboot.model.StatusArtigo;
 import com.amazul.fiap.api_springboot.repository.ArtigoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,14 +39,26 @@ public class ArtigoServiceImpl implements ArtigoService{
     public ArtigoResponse criar(ArtigoRequest request){
         Artigo artigo = new Artigo();
         artigo.setId(null);
+        artigo.setTitulo(request.titulo());
+        artigo.setResumo(request.resumo());
+        artigo.setAplicacaoReal(request.aplicacaoReal());
+        artigo.setImpactoSociedade(request.impactoSociedade());
+        artigo.setAreaAplicacao(request.area());
 
-
+        repository.save(artigo);
         return ArtigoMapper.toResponse(artigo);
     }
 
     @Override
     public ArtigoResponse atualizar(Long id, ArtigoRequest request) {
-        return null;
+        Artigo artigo = findById(id);
+
+//        if(artigo.getStatus() == StatusArtigo.PUBLICADO)
+
+//        if (existing.getStatus() == MilestoneStatus.CONCLUIDA) {
+//            throw new MilestoneAlreadyCompletedException(id);
+//        }
+        return ArtigoMapper.toResponse(artigo);
     }
 
     @Override

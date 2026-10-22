@@ -14,9 +14,10 @@ public final class ArtigoMapper {
 
     }
     public static ArtigoResponse toResponse(Artigo artigo){
-        return new ArtigoResponse(artigo.getId(), artigo.getAreaAplicacao().name(), artigo.getResumo(),
-                artigo.getCorpo(), artigo.getLocal().getNome(), artigo.getLocal().getCodigoPais(), artigo.getStatus().name(),
-                artigo.getReferencias().stream()
+        return new ArtigoResponse(artigo.getId(), artigo.getAreaAplicacao().name(), artigo.getTitulo(), artigo.getResumo(),
+                artigo.getAplicacaoReal(), artigo.getImpactoSociedade(), artigo.getStatus().name(),
+                artigo.getReferencias() == null ? List.of() : artigo.getReferencias()
+                        .stream()
                         .map(ArtigoFonte::getFonte)
                         .map(Fonte::getUrl)
                         .toList());

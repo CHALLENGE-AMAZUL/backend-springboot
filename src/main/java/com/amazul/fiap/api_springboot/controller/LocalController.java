@@ -72,8 +72,7 @@ public class LocalController {
     @PutMapping("/{id}")
     @Operation(summary = "Atualizar local existente")
     public ResponseEntity<LocalResponse> atualizar(@PathVariable @Validated @Positive Long id, @RequestBody @Valid LocalRequest request){
-        LocalResponse local = localService.atualizar(id, request);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(localService.atualizar(id, request));
     }
 
     @DeleteMapping("/{id}")

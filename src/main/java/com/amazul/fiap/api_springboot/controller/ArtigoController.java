@@ -74,13 +74,25 @@ public class ArtigoController {
     @Operation(summary = "Criar novo artigo")
     public ResponseEntity<ArtigoResponse> criar(@RequestBody @Valid ArtigoRequest request){
         ArtigoResponse artigo = artigoService.criar(request);
-        return ResponseEntity.created(URI.create("/api/artigos")).build();
+        return ResponseEntity.created(URI.create("/api/artigos/" + artigo.id())).build();
     }
+
+//    @PostMapping("/{id}/fontes/{fonteId}")
+//    @Operation(summary = "Associar fonte a artigo existente")
+//    public ResponseEntity<ArtigoResponse> associarFonte(@PathVariable @Validated @Positive Long id, @PathVariable @Validated @Positive Long fonteId){
+//        return ResponseEntity.ok(artigoService.novoMetodo(id, fonteId));
+//    }
+//
+//    @PostMapping("/{id}/locais/{localId}")
+//    @Operation(summary = "Associar local a artigo existente")
+//    public ResponseEntity<ArtigoResponse> associarLocal(@PathVariable @Validated @Positive Long id, @PathVariable @Validated @Positive Long localId){
+//        return ResponseEntity.ok(artigoService.novoMetodo(id, localId));
+//    }
 
     @PutMapping("/{id}")
     @Operation(summary = "Atualizar artigo existente")
     public ResponseEntity<ArtigoResponse> atualizar(@PathVariable @Validated @Positive Long id, @RequestBody @Valid ArtigoRequest request){
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(artigoService.atualizar(id, request));
     }
 
     @DeleteMapping("/{id}")
