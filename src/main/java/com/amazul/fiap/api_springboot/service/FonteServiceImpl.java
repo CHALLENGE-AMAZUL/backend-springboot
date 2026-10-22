@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class FonteServiceImpl implements FonteService {
     private final FonteRepository repository;
@@ -24,6 +26,8 @@ public class FonteServiceImpl implements FonteService {
         return repository.findAll(pageable).map(FonteMapper::toResponse);
     }
 
+
+
     @Override
     public Fonte findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fonte", id));
@@ -33,13 +37,19 @@ public class FonteServiceImpl implements FonteService {
     public FonteResponse criar(FonteRequest request) {
         Fonte fonte = new Fonte();
         fonte.setId(null);
+
+        fonte.setTitulo(request.titulo());
+        fonte.setUrl(request.url());
+        fonte.setAtualizadoEm(LocalDate.now());
         return FonteMapper.toResponse(fonte);
     }
 
     @Override
     public FonteResponse atualizar(Long id, FonteRequest request) {
         Fonte fonte = findById(id);
-        return null;
+
+        fonte.setAtualizadoEm(LocalDate.now());
+        return FonteMapper.toResponse(fonte);
     }
 
     @Override

@@ -19,7 +19,7 @@ public final class FonteMapper {
                 fonte.getArtigos().stream()
                         .map(ArtigoFonte::getArtigo)
                         .map(Artigo::getTitulo)
-                        .toList());
+                        .toList(), fonte.getAtualizadoEm());
     }
     public static List<FonteResponse> toResponse(List<Fonte> fontes){
         return fontes.stream().map(FonteMapper::toResponse).toList();

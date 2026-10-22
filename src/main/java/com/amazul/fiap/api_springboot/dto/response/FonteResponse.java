@@ -9,7 +9,8 @@ import java.util.List;
 public record FonteResponse(Long id,
                             String titulo,
                             String url,
-                            List<String> artigos
+                            List<String> artigos,
+                            LocalDate atualizadoEm
                             //,LocalDate dataConsulta
 ) {
 }

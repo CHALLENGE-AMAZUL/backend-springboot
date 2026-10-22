@@ -96,7 +96,7 @@
 			<groupId>me.paulschwarz</groupId>
 			<artifactId>springboot4-dotenv</artifactId>
 			<version>5.0.1</version>
-			<scope>developmentOnly</scope> <!-- ou runtime, se preferir -->
+			<scope>developmentOnly</scope>
 		</dependency>
 	</dependencies>
 

@@ -27,4 +27,6 @@ public class Fonte {
     @OneToMany(mappedBy = "fonte")
     List<ArtigoFonte> artigos;
     private LocalDate dataConsulta;
+
+    private LocalDate atualizadoEm;
 }

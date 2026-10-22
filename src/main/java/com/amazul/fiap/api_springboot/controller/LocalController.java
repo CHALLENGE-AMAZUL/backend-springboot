@@ -66,12 +66,13 @@ public class LocalController {
     @Operation(summary = "Criar novo local de artigo")
     public ResponseEntity<LocalResponse> criar(@RequestBody @Valid LocalRequest request){
         LocalResponse local = localService.criar(request);
-        return ResponseEntity.created(URI.create("/api/locais")).build();
+        return ResponseEntity.created(URI.create("/api/locais/" + local.id())).build();
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Atualizar local existente")
     public ResponseEntity<LocalResponse> atualizar(@PathVariable @Validated @Positive Long id, @RequestBody @Valid LocalRequest request){
+        LocalResponse local = localService.atualizar(id, request);
         return ResponseEntity.ok().build();
     }
 

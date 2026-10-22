@@ -8,6 +8,6 @@ public record LocalResponse(Long id,
                             String cidade,
                             String nomePais,
                             String codigoPais,
-                            Double latitude,
-                            Double longitude) {
+                            String latitude,
+                            String longitude) {
 }

@@ -66,12 +66,13 @@ public class FonteController {
     @Operation(summary = "Criação de fonte de artigo")
     public ResponseEntity<FonteResponse> criar(@RequestBody @Valid FonteRequest request){
         FonteResponse fonte = fonteService.criar(request);
-        return ResponseEntity.created(URI.create("/api/fontes")).build();
+        return ResponseEntity.created(URI.create("/api/fontes/" + fonte.id())).build();
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Atualizar fonte de artigo existente")
     public ResponseEntity<FonteResponse> atualizar(@PathVariable @Validated @Positive Long id, @RequestBody @Valid FonteRequest request){
+        FonteResponse fonte = fonteService.atualizar(id, request);
         return ResponseEntity.ok().build();
     }
 

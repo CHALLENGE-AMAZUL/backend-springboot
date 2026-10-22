@@ -24,6 +24,6 @@ public class Local {
 
     private String nomePais;
     private String codigoPais;
-    private Double latitude;
-    private Double longitude;
+    private String latitude;
+    private String longitude;
 }
