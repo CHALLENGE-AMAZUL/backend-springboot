@@ -1,0 +1,107 @@
+info:
+  name: Retorna informações do país inserido
+  type: http
+  seq: 2
+  tags:
+    - Paises
+
+http:
+  method: GET
+  url: "{{baseUrl}}/api/paises/:codigoPais"
+  params:
+    - name: codigoPais
+      value: BR
+      type: path
+      description: Código ISO-2 do país (2 caracteres)
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: Detalhes geográficos do país retornados com êxito
+    request:
+      url: "{{baseUrl}}/api/paises/:codigoPais"
+      method: GET
+      params:
+        - name: codigoPais
+          value: BR
+          type: path
+          description: Código ISO-2 do país (2 caracteres)
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "name": "Brazil",
+            "iso2": "BR",
+            "latitude": -10,
+            "longitude": -55
+          }
+  - name: 400 Response
+    description: Código de país informado em branco ou inválido
+    request:
+      url: "{{baseUrl}}/api/paises/:codigoPais"
+      method: GET
+      params:
+        - name: codigoPais
+          value: BR
+          type: path
+          description: Código ISO-2 do país (2 caracteres)
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "erro": "Erro de validação dos campos da requisição.",
+            "status": 400,
+            "campos": [
+              {
+                "campo": "titulo",
+                "mensagem": "O título deve possuir entre 5 e 100 caracteres."
+              }
+            ],
+            "timestamp": "2026-10-21T01:30:00"
+          }
+  - name: 500 Response
+    description: Falha ao obter dados do país junto à API externa
+    request:
+      url: "{{baseUrl}}/api/paises/:codigoPais"
+      method: GET
+      params:
+        - name: codigoPais
+          value: BR
+          type: path
+          description: Código ISO-2 do país (2 caracteres)
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "mensagem": "Artigo de id (999) não encontrado!",
+            "erro": "Not Found",
+            "status": 404,
+            "timestamp": "2026-10-21T01:30:00"
+          }
+
+docs: Retorna nome oficial, código ISO-2, latitude e longitude a partir da integração com a API Country State City.

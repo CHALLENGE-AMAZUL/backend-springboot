@@ -1,0 +1,52 @@
+info:
+  name: Lista único artigo com parâmetro id
+  type: http
+  seq: 1
+  tags:
+    - Artigo
+
+http:
+  method: GET
+  url: "{{baseUrl}}/api/artigos/:id"
+  params:
+    - name: id
+      value: ""
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: Artigo de id (xx) retornado com sucesso
+    request:
+      url: "{{baseUrl}}/api/artigos/:id"
+      method: GET
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "conteudo": [
+              {}
+            ],
+            "pagina": 0,
+            "tamanho": 10,
+            "totalElementos": 42,
+            "totalPaginas": 5,
+            "ultimo": false
+          }

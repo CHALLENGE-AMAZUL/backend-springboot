@@ -1,0 +1,10 @@
+info:
+  name: Artigo
+  type: folder
+
+request:
+  auth: inherit
+
+docs:
+  content: Endpoints de artigos de tecnologia nuclear.
+  type: text/markdown

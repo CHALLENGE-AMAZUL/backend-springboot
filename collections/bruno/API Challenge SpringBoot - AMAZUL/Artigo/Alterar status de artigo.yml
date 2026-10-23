@@ -1,0 +1,74 @@
+info:
+  name: Alterar status de artigo
+  type: http
+  seq: 4
+  tags:
+    - Artigo
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/api/artigos/alterarStatus/:id"
+  params:
+    - name: id
+      value: ""
+      type: path
+    - name: status
+      value: RASCUNHO
+      type: query
+    - name: status
+      value: PUBLICADO
+      type: query
+      disabled: true
+    - name: status
+      value: ARQUIVADO
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: Status de artigo atualizado com sucesso
+    request:
+      url: "{{baseUrl}}/api/artigos/alterarStatus/:id"
+      method: PUT
+      params:
+        - name: id
+          value: ""
+          type: path
+        - name: status
+          value: RASCUNHO
+          type: query
+        - name: status
+          value: PUBLICADO
+          type: query
+          disabled: true
+        - name: status
+          value: ARQUIVADO
+          type: query
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "conteudo": [
+              {}
+            ],
+            "pagina": 0,
+            "tamanho": 10,
+            "totalElementos": 42,
+            "totalPaginas": 5,
+            "ultimo": false
+          }

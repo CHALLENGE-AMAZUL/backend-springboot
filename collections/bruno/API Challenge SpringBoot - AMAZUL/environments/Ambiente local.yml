@@ -1,0 +1,4 @@
+name: Ambiente local
+variables:
+  - name: baseUrl
+    value: http://localhost:8080

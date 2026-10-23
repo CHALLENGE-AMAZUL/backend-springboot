@@ -1,0 +1,58 @@
+info:
+  name: Criar novo local de artigo
+  type: http
+  seq: 5
+  tags:
+    - Local
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/locais"
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Complexo radiológico de Iperó/Aramar (CTMSP)",
+        "codigoPais": "BR"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 201 Response
+    description: Local de artigo criado com sucesso
+    request:
+      url: "{{baseUrl}}/api/locais"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "nome": "Complexo radiológico de Iperó/Aramar (CTMSP)",
+            "codigoPais": "BR"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "conteudo": [
+              {}
+            ],
+            "pagina": 0,
+            "tamanho": 10,
+            "totalElementos": 42,
+            "totalPaginas": 5,
+            "ultimo": false
+          }

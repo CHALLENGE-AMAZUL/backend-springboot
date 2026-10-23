@@ -1,0 +1,10 @@
+info:
+  name: Paises
+  type: folder
+
+request:
+  auth: inherit
+
+docs:
+  content: Endpoints de integração com a API Country State City, para informação de geolocalização.
+  type: text/markdown

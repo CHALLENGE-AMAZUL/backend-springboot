@@ -1,0 +1,2299 @@
+{
+  "info": {
+    "_postman_id": "c349647d-b020-4dec-8432-34ef8d509565",
+    "name": "API Challenge SpringBoot - AMAZUL",
+    "description": "API do projeto SpringBoot para o Challenge Fiap 2026-27, que trabalha com registro de artigos referente à tecnologia nuclear.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44635416"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "locais",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Lista único local de artigo com parâmetro id",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/locais/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "locais",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2983"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/locais/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "locais",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 1066,\n  \"nome\": \"string\",\n  \"cidade\": \"string\",\n  \"nomePais\": \"string\",\n  \"codigoPais\": \"string\",\n  \"latitude\": \"string\",\n  \"longitude\": \"string\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Atualizar local existente",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"codigoPais\": \"BR\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/locais/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "locais",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2983"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"codigoPais\": \"BR\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/locais/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "locais",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 1066,\n  \"nome\": \"string\",\n  \"cidade\": \"string\",\n  \"nomePais\": \"string\",\n  \"codigoPais\": \"string\",\n  \"latitude\": \"string\",\n  \"longitude\": \"string\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Deletar local existente",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/locais/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "locais",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2983"
+                        }
+                      ]
+                    },
+                    "description": "Remove definitivamente um ponto geográfico ou instalação da base de dados."
+                  },
+                  "response": [
+                    {
+                      "name": "Local excluído com sucesso",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/locais/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "locais",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    },
+                    {
+                      "name": "ID do local inválido ou não positivo",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/locais/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "locais",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    },
+                    {
+                      "name": "Local não encontrado para o ID informado",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/locais/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "locais",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    },
+                    {
+                      "name": "Erro interno no servidor",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/locais/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "locais",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Lista todos os locais com paginação",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/locais?pagina=0&tamanho=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "locais"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagina",
+                      "value": "0"
+                    },
+                    {
+                      "key": "tamanho",
+                      "value": "10"
+                    }
+                  ]
+                },
+                "description": "Retorna uma lista paginada de instalações e locais relacionados à tecnologia nuclear com suas coordenadas."
+              },
+              "response": [
+                {
+                  "name": "Página de locais retornada com sucesso",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/locais?pagina=0&tamanho=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "locais"
+                      ],
+                      "query": [
+                        {
+                          "key": "pagina",
+                          "value": "0"
+                        },
+                        {
+                          "key": "tamanho",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                },
+                {
+                  "name": "Parâmetros de requisição inválidos",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/locais?pagina=0&tamanho=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "locais"
+                      ],
+                      "query": [
+                        {
+                          "key": "pagina",
+                          "value": "0"
+                        },
+                        {
+                          "key": "tamanho",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                },
+                {
+                  "name": "Erro interno no servidor",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/locais?pagina=0&tamanho=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "locais"
+                      ],
+                      "query": [
+                        {
+                          "key": "pagina",
+                          "value": "0"
+                        },
+                        {
+                          "key": "tamanho",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Criar novo local de artigo",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"codigoPais\": \"BR\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/locais",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "locais"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Local de artigo criado com sucesso",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"codigoPais\": \"BR\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/locais",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "locais"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "fontes",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Lista única fonte com parâmetro id",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/fontes/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "fontes",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2983"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/fontes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "fontes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 7168,\n  \"titulo\": \"string\",\n  \"url\": \"string\",\n  \"artigos\": [\n    \"string\",\n    \"string\"\n  ],\n  \"atualizadoEm\": \"1962-06-15T22:49:17.060Z\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Atualizar fonte de artigo existente",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"titulo\": \"Programa Nuclear da Marinha - CTMSP\",\n  \"url\": \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/fontes/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "fontes",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2983"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"titulo\": \"Programa Nuclear da Marinha - CTMSP\",\n  \"url\": \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/fontes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "fontes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 7168,\n  \"titulo\": \"string\",\n  \"url\": \"string\",\n  \"artigos\": [\n    \"string\",\n    \"string\"\n  ],\n  \"atualizadoEm\": \"1962-06-15T22:49:17.060Z\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Deletar uma fonte existente",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/fontes/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "fontes",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2983"
+                        }
+                      ]
+                    },
+                    "description": "Exclui definitivamente uma fonte de referência científica do sistema."
+                  },
+                  "response": [
+                    {
+                      "name": "Fonte deletada com sucesso",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/fontes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "fontes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    },
+                    {
+                      "name": "ID informado é inválido ou menor/igual a zero",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/fontes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "fontes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    },
+                    {
+                      "name": "Fonte não encontrada para o ID informado",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/fontes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "fontes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    },
+                    {
+                      "name": "Erro interno no servidor",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/fontes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "fontes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Lista todas as fontes com paginação",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/fontes?pagina=0&tamanho=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "fontes"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagina",
+                      "value": "0"
+                    },
+                    {
+                      "key": "tamanho",
+                      "value": "10"
+                    }
+                  ]
+                },
+                "description": "Retorna uma página de fontes de referência cadastradas, indicando os títulos dos artigos vinculados a cada uma."
+              },
+              "response": [
+                {
+                  "name": "Página de fontes recuperada com sucesso",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/fontes?pagina=0&tamanho=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "fontes"
+                      ],
+                      "query": [
+                        {
+                          "key": "pagina",
+                          "value": "0"
+                        },
+                        {
+                          "key": "tamanho",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                },
+                {
+                  "name": "Parâmetros de paginação inválidos",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/fontes?pagina=0&tamanho=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "fontes"
+                      ],
+                      "query": [
+                        {
+                          "key": "pagina",
+                          "value": "0"
+                        },
+                        {
+                          "key": "tamanho",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                },
+                {
+                  "name": "Erro interno no servidor",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/fontes?pagina=0&tamanho=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "fontes"
+                      ],
+                      "query": [
+                        {
+                          "key": "pagina",
+                          "value": "0"
+                        },
+                        {
+                          "key": "tamanho",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Criação de fonte de artigo",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"titulo\": \"Programa Nuclear da Marinha - CTMSP\",\n  \"url\": \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/fontes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "fontes"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Fonte criada com sucesso",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"titulo\": \"Programa Nuclear da Marinha - CTMSP\",\n  \"url\": \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/fontes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "fontes"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "artigos",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Lista único artigo com parâmetro id",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2983"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Artigo de id (xx) retornado com sucesso",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/artigos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "artigos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Atualizar artigo existente",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"area\": \"SAUDE\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"local\": {\n    \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n    \"codigoPais\": \"BR\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2983"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Artigo atualizado com sucesso",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"area\": \"SAUDE\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"local\": {\n    \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n    \"codigoPais\": \"BR\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/artigos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "artigos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Deletar artigo existente",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "2983"
+                        }
+                      ]
+                    },
+                    "description": "Remove definitivamente um artigo cadastrado através de seu identificador numérico."
+                  },
+                  "response": [
+                    {
+                      "name": "Artigo excluído com sucesso",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/artigos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "artigos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    },
+                    {
+                      "name": "Identificador de artigo inválido (não positivo ou formato incorreto)",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/artigos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "artigos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    },
+                    {
+                      "name": "Artigo não encontrado para o ID informado",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/artigos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "artigos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    },
+                    {
+                      "name": "Erro interno no servidor",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/artigos/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "artigos",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "alterarStatus",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Alterar status de artigo",
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/artigos/alterarStatus/:id?status=ARQUIVADO",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "artigos",
+                            "alterarStatus",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "ARQUIVADO"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "2983"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "Status de artigo atualizado com sucesso",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/artigos/alterarStatus/:id?status=ARQUIVADO",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "artigos",
+                                "alterarStatus",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "status",
+                                  "value": "ARQUIVADO"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "2983"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "*/*"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "busca",
+              "item": [
+                {
+                  "name": "Lista todos os artigos que contenham o título inserido",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos/busca?titulo=string&pagina=0&tamanho=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos",
+                        "busca"
+                      ],
+                      "query": [
+                        {
+                          "key": "titulo",
+                          "value": "string"
+                        },
+                        {
+                          "key": "pagina",
+                          "value": "0"
+                        },
+                        {
+                          "key": "tamanho",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Artigos contendo o texto inserido listados",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/artigos/busca?titulo=string&pagina=0&tamanho=10",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "artigos",
+                            "busca"
+                          ],
+                          "query": [
+                            {
+                              "key": "titulo",
+                              "value": "string"
+                            },
+                            {
+                              "key": "pagina",
+                              "value": "0"
+                            },
+                            {
+                              "key": "tamanho",
+                              "value": "10"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Lista todos os artigos com paginação",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/artigos?pagina=0&tamanho=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "artigos"
+                  ],
+                  "query": [
+                    {
+                      "key": "pagina",
+                      "value": "0"
+                    },
+                    {
+                      "key": "tamanho",
+                      "value": "10"
+                    }
+                  ]
+                },
+                "description": "Recupera uma página de artigos cadastrados no acervo educativo da AMAZUL, incluindo dados do local e referências bibliográficas."
+              },
+              "response": [
+                {
+                  "name": "Página de artigos retornada com sucesso",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos?pagina=0&tamanho=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos"
+                      ],
+                      "query": [
+                        {
+                          "key": "pagina",
+                          "value": "0"
+                        },
+                        {
+                          "key": "tamanho",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                },
+                {
+                  "name": "Parâmetros de paginação inválidos",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos?pagina=0&tamanho=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos"
+                      ],
+                      "query": [
+                        {
+                          "key": "pagina",
+                          "value": "0"
+                        },
+                        {
+                          "key": "tamanho",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                },
+                {
+                  "name": "Erro interno no servidor",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos?pagina=0&tamanho=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos"
+                      ],
+                      "query": [
+                        {
+                          "key": "pagina",
+                          "value": "0"
+                        },
+                        {
+                          "key": "tamanho",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Criar novo artigo",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"area\": \"SAUDE\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"local\": {\n    \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n    \"codigoPais\": \"BR\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/artigos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "artigos"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Artigo criado com sucesso",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"area\": \"SAUDE\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"local\": {\n    \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n    \"codigoPais\": \"BR\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "paises",
+          "item": [
+            {
+              "name": "{codigoPais}",
+              "item": [
+                {
+                  "name": "Retorna informações do país inserido",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/paises/:codigoPais",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "paises",
+                        ":codigoPais"
+                      ],
+                      "variable": [
+                        {
+                          "key": "codigoPais",
+                          "value": "BR",
+                          "description": "Código ISO-2 do país (2 caracteres)"
+                        }
+                      ]
+                    },
+                    "description": "Retorna nome oficial, código ISO-2, latitude e longitude a partir da integração com a API Country State City."
+                  },
+                  "response": [
+                    {
+                      "name": "Detalhes geográficos do país retornados com êxito",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/paises/:codigoPais",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "paises",
+                            ":codigoPais"
+                          ],
+                          "variable": [
+                            {
+                              "key": "codigoPais",
+                              "value": "BR",
+                              "description": "Código ISO-2 do país (2 caracteres)"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"name\": \"Brazil\",\n  \"iso2\": \"BR\",\n  \"latitude\": \"string\",\n  \"longitude\": \"string\"\n}"
+                    },
+                    {
+                      "name": "Código de país informado em branco ou inválido",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/paises/:codigoPais",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "paises",
+                            ":codigoPais"
+                          ],
+                          "variable": [
+                            {
+                              "key": "codigoPais",
+                              "value": "BR",
+                              "description": "Código ISO-2 do país (2 caracteres)"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"erro\": \"Erro de validação dos campos da requisição.\",\n  \"status\": 400,\n  \"campos\": [\n    {\n      \"campo\": \"titulo\",\n      \"mensagem\": \"O título deve possuir entre 5 e 100 caracteres.\"\n    },\n    {\n      \"campo\": \"titulo\",\n      \"mensagem\": \"O título deve possuir entre 5 e 100 caracteres.\"\n    }\n  ],\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    },
+                    {
+                      "name": "Falha ao obter dados do país junto à API externa",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/paises/:codigoPais",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "paises",
+                            ":codigoPais"
+                          ],
+                          "variable": [
+                            {
+                              "key": "codigoPais",
+                              "value": "BR",
+                              "description": "Código ISO-2 do país (2 caracteres)"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Retorna uma lista com todos os países e seus Códigos",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/paises",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "paises"
+                  ]
+                },
+                "description": "Exemplo: BR - Brasil"
+              },
+              "response": [
+                {
+                  "name": "Lista de países formatada retornada com sucesso",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/paises",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "paises"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  \"BR - Brazil\",\n  \"BR - Brazil\"\n]"
+                },
+                {
+                  "name": "Erro ao comunicar-se com a API externa de geolocalização",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/paises",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "paises"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}

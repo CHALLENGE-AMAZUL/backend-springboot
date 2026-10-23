@@ -1,0 +1,113 @@
+info:
+  name: Deletar artigo existente
+  type: http
+  seq: 3
+  tags:
+    - Artigo
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/api/artigos/:id"
+  params:
+    - name: id
+      value: ""
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 204 Response
+    description: Artigo excluído com sucesso
+    request:
+      url: "{{baseUrl}}/api/artigos/:id"
+      method: DELETE
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: 400 Response
+    description: Identificador de artigo inválido (não positivo ou formato incorreto)
+    request:
+      url: "{{baseUrl}}/api/artigos/:id"
+      method: DELETE
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "mensagem": "Artigo de id (999) não encontrado!",
+            "erro": "Not Found",
+            "status": 404,
+            "timestamp": "2026-10-21T01:30:00"
+          }
+  - name: 404 Response
+    description: Artigo não encontrado para o ID informado
+    request:
+      url: "{{baseUrl}}/api/artigos/:id"
+      method: DELETE
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "mensagem": "Artigo de id (999) não encontrado!",
+            "erro": "Not Found",
+            "status": 404,
+            "timestamp": "2026-10-21T01:30:00"
+          }
+  - name: 500 Response
+    description: Erro interno no servidor
+    request:
+      url: "{{baseUrl}}/api/artigos/:id"
+      method: DELETE
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "mensagem": "Artigo de id (999) não encontrado!",
+            "erro": "Not Found",
+            "status": 404,
+            "timestamp": "2026-10-21T01:30:00"
+          }
+
+docs: Remove definitivamente um artigo cadastrado através de seu identificador numérico.

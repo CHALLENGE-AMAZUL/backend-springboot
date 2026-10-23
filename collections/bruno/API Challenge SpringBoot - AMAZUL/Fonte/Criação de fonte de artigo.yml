@@ -1,0 +1,58 @@
+info:
+  name: Criação de fonte de artigo
+  type: http
+  seq: 5
+  tags:
+    - Fonte
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/fontes"
+  body:
+    type: json
+    data: |-
+      {
+        "titulo": "Programa Nuclear da Marinha - CTMSP",
+        "url": "https://www.marinha.mil.br/ctmsp/programa-nuclear"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 201 Response
+    description: Fonte criada com sucesso
+    request:
+      url: "{{baseUrl}}/api/fontes"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "titulo": "Programa Nuclear da Marinha - CTMSP",
+            "url": "https://www.marinha.mil.br/ctmsp/programa-nuclear"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "conteudo": [
+              {}
+            ],
+            "pagina": 0,
+            "tamanho": 10,
+            "totalElementos": 42,
+            "totalPaginas": 5,
+            "ultimo": false
+          }

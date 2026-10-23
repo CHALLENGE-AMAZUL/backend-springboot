@@ -1,0 +1,59 @@
+info:
+  name: Retorna uma lista com todos os países e seus Códigos
+  type: http
+  seq: 1
+  tags:
+    - Paises
+
+http:
+  method: GET
+  url: "{{baseUrl}}/api/paises"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: Lista de países formatada retornada com sucesso
+    request:
+      url: "{{baseUrl}}/api/paises"
+      method: GET
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          [
+            ""
+          ]
+  - name: 500 Response
+    description: Erro ao comunicar-se com a API externa de geolocalização
+    request:
+      url: "{{baseUrl}}/api/paises"
+      method: GET
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "mensagem": "Artigo de id (999) não encontrado!",
+            "erro": "Not Found",
+            "status": 404,
+            "timestamp": "2026-10-21T01:30:00"
+          }
+
+docs: "Exemplo: BR - Brasil"

@@ -1,0 +1,10 @@
+info:
+  name: Fonte
+  type: folder
+
+request:
+  auth: inherit
+
+docs:
+  content: Endpoints das fontes dos artigos de tecnologia nuclear.
+  type: text/markdown

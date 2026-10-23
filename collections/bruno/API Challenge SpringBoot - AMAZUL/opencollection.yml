@@ -1,0 +1,14 @@
+opencollection: 1.0.0
+
+info:
+  name: API Challenge SpringBoot - AMAZUL
+
+docs:
+  content: API do projeto SpringBoot para o Challenge Fiap 2026-27, que trabalha com registro de artigos referente à tecnologia nuclear.
+  type: text/markdown
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git
