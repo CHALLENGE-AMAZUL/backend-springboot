@@ -4,6 +4,7 @@ import com.amazul.fiap.api_springboot.dto.errors.ErrorResponse;
 import com.amazul.fiap.api_springboot.dto.request.LocalRequest;
 import com.amazul.fiap.api_springboot.dto.response.LocalResponse;
 import com.amazul.fiap.api_springboot.dto.response.PageResponse;
+import com.amazul.fiap.api_springboot.mapper.LocalMapper;
 import com.amazul.fiap.api_springboot.service.LocalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -38,17 +39,17 @@ public class LocalController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Página de locais retornada com sucesso",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = PageResponse.class))
+                    content = @Content(schema = @Schema(implementation = PageResponse.class))
             ),
             @ApiResponse(
                     responseCode = "400",
                     description = "Parâmetros de requisição inválidos",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             ),
             @ApiResponse(
                     responseCode = "500",
                     description = "Erro interno no servidor",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
     public PageResponse<LocalResponse> listar(@RequestParam(required = false, defaultValue = "0") Integer pagina,
@@ -59,14 +60,20 @@ public class LocalController {
     @GetMapping("/{id}")
     @Operation(summary = "Lista único local de artigo com parâmetro id")
     public ResponseEntity<LocalResponse> listarUnico(@PathVariable @Validated @Positive Long id){
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(LocalMapper.toResponse(localService.findById(id)));
     }
 
+    //Não sei se é o ideal. Local se criado será vinculado
     @PostMapping
     @Operation(summary = "Criar novo local de artigo")
+    @ApiResponse(
+            responseCode = "201",
+            description = "Local de artigo criado com sucesso",
+            content = @Content(schema = @Schema(implementation = PageResponse.class))
+    )
     public ResponseEntity<LocalResponse> criar(@RequestBody @Valid LocalRequest request){
         LocalResponse local = localService.criar(request);
-        return ResponseEntity.created(URI.create("/api/locais/" + local.id())).build();
+        return ResponseEntity.created(URI.create("/api/locais/" + local.id())).body(local);
     }
 
     @PutMapping("/{id}")
@@ -85,17 +92,17 @@ public class LocalController {
             @ApiResponse(
                     responseCode = "400",
                     description = "ID do local inválido ou não positivo",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             ),
             @ApiResponse(
                     responseCode = "404",
                     description = "Local não encontrado para o ID informado",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             ),
             @ApiResponse(
                     responseCode = "500",
                     description = "Erro interno no servidor",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
     public ResponseEntity<Void> apagar(@PathVariable @Validated @Positive Long id){

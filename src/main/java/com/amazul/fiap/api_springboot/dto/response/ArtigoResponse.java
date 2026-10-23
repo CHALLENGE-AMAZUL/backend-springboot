@@ -2,6 +2,8 @@ package com.amazul.fiap.api_springboot.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Schema(description = "DTO de resposta analítica do artigo")
@@ -17,11 +19,11 @@ public record ArtigoResponse(
         String aplicacaoReal,
         String impactoSociedade,
 
-//        String nomeLocal,//pode ser nulo
-//        String paisLocal,//pode ser nulo
+        String nomeLocal, //Pode ser nulo
+        String paisLocal, //Pode ser nulo
 
         String status,
 
-        List<String>referencias
-) {
-}
+        List<String>referencias,
+        Date atualizadoEm
+) { }

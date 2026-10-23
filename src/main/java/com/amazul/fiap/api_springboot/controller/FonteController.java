@@ -4,6 +4,7 @@ import com.amazul.fiap.api_springboot.dto.errors.ErrorResponse;
 import com.amazul.fiap.api_springboot.dto.request.FonteRequest;
 import com.amazul.fiap.api_springboot.dto.response.FonteResponse;
 import com.amazul.fiap.api_springboot.dto.response.PageResponse;
+import com.amazul.fiap.api_springboot.mapper.FonteMapper;
 import com.amazul.fiap.api_springboot.service.FonteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -38,17 +39,17 @@ public class FonteController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Página de fontes recuperada com sucesso",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = PageResponse.class))
+                    content = @Content(schema = @Schema(implementation = PageResponse.class))
             ),
             @ApiResponse(
                     responseCode = "400",
                     description = "Parâmetros de paginação inválidos",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             ),
             @ApiResponse(
                     responseCode = "500",
                     description = "Erro interno no servidor",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
     public PageResponse<FonteResponse> listar(@RequestParam(required = false, defaultValue = "0") Integer pagina,
@@ -59,14 +60,19 @@ public class FonteController {
     @GetMapping("/{id}")
     @Operation(summary = "Lista única fonte com parâmetro id")
     public ResponseEntity<FonteResponse> listarUnica(@PathVariable @Validated @Positive Long id){
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(FonteMapper.toResponse(fonteService.findById(id)));
     }
 
     @PostMapping
     @Operation(summary = "Criação de fonte de artigo")
+    @ApiResponse(
+            responseCode = "201",
+            description = "Fonte criada com sucesso",
+            content = @Content(schema = @Schema(implementation = PageResponse.class))
+    )
     public ResponseEntity<FonteResponse> criar(@RequestBody @Valid FonteRequest request){
         FonteResponse fonte = fonteService.criar(request);
-        return ResponseEntity.created(URI.create("/api/fontes/" + fonte.id())).build();
+        return ResponseEntity.created(URI.create("/api/fontes/" + fonte.id())).body(fonte);
     }
 
     @PutMapping("/{id}")
@@ -85,17 +91,17 @@ public class FonteController {
             @ApiResponse(
                     responseCode = "400",
                     description = "ID informado é inválido ou menor/igual a zero",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             ),
             @ApiResponse(
                     responseCode = "404",
                     description = "Fonte não encontrada para o ID informado",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             ),
             @ApiResponse(
                     responseCode = "500",
                     description = "Erro interno no servidor",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
     public ResponseEntity<Void> apagar(@PathVariable @Validated @Positive Long id){

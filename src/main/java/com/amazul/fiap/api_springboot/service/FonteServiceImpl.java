@@ -10,7 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Service
 public class FonteServiceImpl implements FonteService {
@@ -38,7 +40,7 @@ public class FonteServiceImpl implements FonteService {
 
         fonte.setTitulo(request.titulo());
         fonte.setUrl(request.url());
-        fonte.setAtualizadoEm(LocalDate.now());
+        fonte.setAtualizadoEm(Date.from(Instant.now()));
 
         repository.save(fonte);
         return FonteMapper.toResponse(fonte);
@@ -49,8 +51,10 @@ public class FonteServiceImpl implements FonteService {
         Fonte fonte = findById(id);
 
         fonte.setTitulo(request.titulo());
-        fonte.setAtualizadoEm(LocalDate.now());
+        fonte.setUrl(request.url());
+        fonte.setAtualizadoEm(Date.from(Instant.now()));
 
+        repository.save(fonte);
         return FonteMapper.toResponse(fonte);
     }
 

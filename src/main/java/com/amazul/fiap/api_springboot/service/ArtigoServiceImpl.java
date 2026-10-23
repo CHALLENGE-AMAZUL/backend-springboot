@@ -2,7 +2,6 @@ package com.amazul.fiap.api_springboot.service;
 
 import com.amazul.fiap.api_springboot.dto.request.ArtigoRequest;
 import com.amazul.fiap.api_springboot.dto.response.ArtigoResponse;
-import com.amazul.fiap.api_springboot.dto.response.PageResponse;
 import com.amazul.fiap.api_springboot.exception.ResourceNotFoundException;
 import com.amazul.fiap.api_springboot.mapper.ArtigoMapper;
 import com.amazul.fiap.api_springboot.model.Artigo;
@@ -11,6 +10,9 @@ import com.amazul.fiap.api_springboot.repository.ArtigoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.util.Date;
 
 @Service
 public class ArtigoServiceImpl implements ArtigoService{
@@ -38,12 +40,20 @@ public class ArtigoServiceImpl implements ArtigoService{
 
     public ArtigoResponse criar(ArtigoRequest request){
         Artigo artigo = new Artigo();
+
+//        if(request.local() != null){
+//            artigo.set().setNome(request.local().nome());
+//            artigo.getLocal().setCodigoPais(request.local().codigoPais());
+//        }
+
         artigo.setId(null);
         artigo.setTitulo(request.titulo());
         artigo.setResumo(request.resumo());
         artigo.setAplicacaoReal(request.aplicacaoReal());
         artigo.setImpactoSociedade(request.impactoSociedade());
         artigo.setAreaAplicacao(request.area());
+
+        artigo.setAtualizadoEm(Date.from(Instant.now()));
 
         repository.save(artigo);
         return ArtigoMapper.toResponse(artigo);
@@ -52,14 +62,47 @@ public class ArtigoServiceImpl implements ArtigoService{
     @Override
     public ArtigoResponse atualizar(Long id, ArtigoRequest request) {
         Artigo artigo = findById(id);
+        artigo.setStatus(StatusArtigo.RASCUNHO);
 
-//        if(artigo.getStatus() == StatusArtigo.PUBLICADO)
+        if(request.titulo() != null && !request.titulo().isBlank()){
+            artigo.setTitulo(request.titulo());
+        }
 
-//        if (existing.getStatus() == MilestoneStatus.CONCLUIDA) {
-//            throw new MilestoneAlreadyCompletedException(id);
+        if(request.resumo() != null && !request.resumo().isBlank()){
+            artigo.setResumo(request.resumo());
+        }
+
+        if(request.aplicacaoReal() != null && !request.aplicacaoReal().isBlank()){
+            artigo.setAplicacaoReal(request.aplicacaoReal());
+        }
+
+        if(request.impactoSociedade() != null && !request.impactoSociedade().isBlank()){
+            artigo.setImpactoSociedade(request.impactoSociedade());
+        }
+
+        //Decidir Local
+//        if(request.local() != null){
+//
 //        }
+        artigo.setAtualizadoEm(Date.from(Instant.now()));
+
+        repository.save(artigo);
         return ArtigoMapper.toResponse(artigo);
     }
+
+    @Override
+    public ArtigoResponse mudarStatus(Long id, StatusArtigo status) {
+    //Posso também alterar a lógica para PUBLICADO -> ARQUIVADO
+    //                                 ou ARQUIVADO -> PUBLICADO
+
+        Artigo artigo = findById(id);
+        if(artigo == null){
+            return null;
+        }
+        artigo.setStatus(status);
+        return ArtigoMapper.toResponse(artigo);
+    }
+
 
     @Override
     public void apagar(Long id) {

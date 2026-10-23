@@ -1,8 +1,66 @@
-# Integrantes
-- **Paulo Cavalcante Caroba** - RM566667
-- **Renan da Silva Paulino** - RM566610
-- **Sergio Henrique Santos** - RM567254
+# AMAZUL & CTMSP — Plataforma Educativa de Divulgação Nuclear
 
-# Diagrama de Classes (.puml)
+**API RESTful desenvolvida para o Challenge FIAP 2026**
+*Parceria Institucional: Centro Tecnológico da Marinha em São Paulo (CTMSP) & AMAZUL*                                                                                                                                       
 
-[//]: # (![[DiagramaChallenge.puml]&#40;http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/amazul/fiap-api-springboot/main/docs/diagramaChallenge.puml&#41;])
+## Identificação do Grupo                                                                                                                                                                                                  
+- **Paulo Cavalcante Caroba** — RM566667                                                                                                                                                                                      
+- **Renan da Silva Paulino** — RM566610                                                                                                                                                                                       
+- **Sergio Henrique Santos** — RM567254                                                                                                                                                                                       
+                                                                                                                                                                                                                                   
+## 🎯 Apresentação da Solução e Contexto de Negócio                                                                                                                                                                           
+  A energia nuclear frequentemente sofre estigmas públicos relacionados exclusivamente a acidentes e armamentos bélicos. Este projeto fornece o ecossistema de backend de uma **plataforma educativa e de divulgação            
+científica**, evidenciando as aplicações pacíficas e vitais da tecnologia nuclear desenvolvida pela Marinha do Brasil e instituições parceiras:                                                                                 
+- **Saúde:** Síntese de radiofármacos (Iodo-131, Tecnécio-99m) para diagnóstico e tratamento oncológico pelo IPEN/CNEN.                                                                                                       
+- **Agricultura e Alimentação:** Irradiação de alimentos contra pragas, melhoramento genético vegetal e conservação de solos.                                                                                                 
+- **Indústria e Infraestrutura:** Gamagrafia industrial para integridade de dutos e materiais.                                                                                                                                
+- **Meio Ambiente:** Hidrologia isotópica para monitoramento de aquíferos e oceanos.                                                                                                                                          
+- **Pesquisa e Propulsão:** Reatores de pesquisa (RMB, IEA-R1) e o Programa Nuclear da Marinha (PNM/PROSUB).
+
+    ---                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                  
+    ## 🏛️ Arquitetura e Tecnologias                                                                                                                                                                                               
+    - **Linguagem & Framework:** Java 21 LTS + Spring Boot 3.4 / 4.x                                                                                                                                                              
+    - **Persistência de Dados:** Spring Data JPA (Hibernate 7.x)                                                                                                                                                                  
+    - **Bancos de Dados Suportados:**                                                                                                                                                                                             
+      - *Desenvolvimento Local:* H2 Database em memória (console ativo em `/h2-console`)                                                                                                                                          
+      - *Produção/Avaliação:* Oracle Database (FIAP Enterprise)                                                                                                                                                                   
+    - **Integração Externa:** Spring `RestClient` consumindo a API geográfica `countrystatecity.in` para enriquecimento de instalações                                                                                            
+    - **Validação & Tratamento de Erros:** Jakarta Bean Validation + `@RestControllerAdvice` padronizado                                                                                                                          
+    - **Documentação de API:** SpringDoc OpenAPI 3.x com interface gráfica Swagger UI                                                                                                                                             
+                                                                                                                                                                                                                                  
+    ---                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                  
+    ## 🚀 Como Executar o Projeto                                                                                                                                                                                                 
+                                                                                                                                                                                                                                  
+    ### Pré-requisitos                                                                                                                                                                                                            
+    - JDK 21 instalada e configurada no `JAVA_HOME`.                                                                                                                                                                              
+    - Maven 3.9+ ou o wrapper incluído (`./mvnw`).                                                                                                                                                                                
+                                                                                                                                                                                                                                  
+    ### 1. Clonar e Configurar Variáveis de Ambiente                                                                                                                                                                              
+    Crie um arquivo `.env` na raiz do projeto baseado nas variáveis:                                                                                                                                                              
+    ```env                                                                                                                                                                                                                        
+    API_COUNTRY_KEY=sua_chave_countrystatecity_aqui                                                                                                                                                                               
+    ```                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                  
+    ### 2. Executar a Aplicação                                                                                                                                                                                                   
+    ```bash                                                                                                                                                                                                                       
+    # Windows                                                                                                                                                                                                                     
+    .\mvnw.cmd spring-boot:run                                                                                                                                                                                                    
+                                                                                                                                                                                                                                  
+    # Linux / Mac                                                                                                                                                                                                                 
+    ./mvnw spring-boot:run                                                                                                                                                                                                        
+    ```                                                                                                                                                                                                                           
+    A API iniciará por padrão em `http://localhost:8080`.                                                                                                                                                                         
+                                                                                                                                                                                                                                  
+    ---                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                  
+    ## 📖 Documentação Interativa (Swagger UI)                                                                                                                                                                                    
+    Com a aplicação em execução, acesse:                                                                                                                                                                                          
+    - **Interface Gráfica (Swagger UI):** `http://localhost:8080/swagger-ui/index.html` ou `http://localhost:8080/swagger-ui.html`                                                                                                
+    - **Especificação OpenAPI (JSON):** `http://localhost:8080/v3/api-docs`                                                                                                                                                       
+                                                                                                                                                                                                                                  
+    ---                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                  
+    ## 🧪 Exemplos de Requisições para Testes (Endpoints Principais)                                                                                                                                                              
+    *(Aqui listaremos exemplos curtos com `curl` para `/api/artigos`, `/api/locais`, `/api/fontes` e `/api/artigos/busca`).*

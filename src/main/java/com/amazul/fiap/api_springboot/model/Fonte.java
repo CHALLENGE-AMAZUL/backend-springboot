@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -28,5 +29,7 @@ public class Fonte {
     List<ArtigoFonte> artigos;
     private LocalDate dataConsulta;
 
-    private LocalDate atualizadoEm;
+    private Date atualizadoEm;
+
+    //Inserir dataConsulta
 }

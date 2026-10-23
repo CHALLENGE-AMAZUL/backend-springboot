@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @OpenAPIDefinition(
         info = @Info(
                 title = "API Challenge SpringBoot - AMAZUL",
-                version = "1.0",
-                description = "Documentação do projeto SpringBoot para o Challenge Fiap 2026-27"
+                version = "v1",
+                description = "API do projeto SpringBoot para o Challenge Fiap 2026-27, que trabalha com registro de artigos referente à tecnologia nuclear."
         ),
         servers = {
                 @Server(url = "http://localhost:8080", description = "Ambiente local")

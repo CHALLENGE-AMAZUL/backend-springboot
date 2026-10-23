@@ -36,18 +36,21 @@ public class LocalServiceImpl implements LocalService{
         Local local = new Local();
         String codigoIso2 = request.codigoPais();
 
-        PaisDetalhesResponse infoPais =  paisService.exibirPais(codigoIso2);
-
-        if(infoPais == null){
-            return null;
-        }
-
         local.setId(null);
         local.setNome(request.nome());
-        local.setCodigoPais(codigoIso2);
-        local.setNomePais(infoPais.nomePais());
-        local.setLatitude(infoPais.latitude());
-        local.setLongitude(infoPais.longitude());
+
+        if(codigoIso2 != null && !codigoIso2.isBlank()){
+            PaisDetalhesResponse pais = paisService.exibirPais(codigoIso2);
+
+            if(pais == null){
+                return null;
+            }
+
+            local.setCodigoPais(codigoIso2.toUpperCase());
+            local.setNomePais(pais.nomePais());
+            local.setLatitude(pais.latitude());
+            local.setLongitude(pais.longitude());
+        }
 
         repository.save(local);
         return LocalMapper.toResponse(local);
@@ -56,7 +59,21 @@ public class LocalServiceImpl implements LocalService{
     @Override
     public LocalResponse atualizar(Long id, LocalRequest request) {
         Local local = findById(id);
-        //Não sei se será necessário no inicio
+        if(request.nome() != null && !request.nome().isBlank()){
+            local.setNome(request.nome());
+        }
+        if(request.codigoPais() != null && !request.codigoPais().isBlank()){
+            local.setCodigoPais(request.codigoPais());
+
+            PaisDetalhesResponse pais = paisService.exibirPais(request.codigoPais());
+            if(pais == null){
+                return null;
+            }
+            local.setLatitude(pais.latitude());
+            local.setLongitude(pais.longitude());
+        }
+
+        repository.save(local);
         return LocalMapper.toResponse(local);
     }
 

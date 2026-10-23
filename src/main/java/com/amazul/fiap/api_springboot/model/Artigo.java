@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -29,7 +31,8 @@ public class Artigo {
     //Antigo 'corpo' era @Lob
     //Pensando em desmembrar corpo em Problema, AplicacaoReal - no cotidiano, sociedade, e beneficio.
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_LOCAL")
     private Local local;
 
     @Enumerated(EnumType.STRING)
@@ -41,6 +44,8 @@ public class Artigo {
             orphanRemoval = true
     )
     private List<ArtigoFonte> referencias = new ArrayList<>();
+
+    private Date atualizadoEm;
 
     public void setStatus(StatusArtigo status) {
         if(this.status == null && status != StatusArtigo.RASCUNHO){

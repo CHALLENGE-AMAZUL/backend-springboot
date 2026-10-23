@@ -5,7 +5,8 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-@Schema(description = "Resposta envelopada de paginação de artigos", requiredMode = Schema.RequiredMode.REQUIRED)
+@Schema(description = "Resposta envelopada de paginação de artigos",
+        requiredMode = Schema.RequiredMode.REQUIRED)
 public record PageResponse<T>(
         @Schema(description = "Lista de elementos da página atual")
         List<T> conteudo,

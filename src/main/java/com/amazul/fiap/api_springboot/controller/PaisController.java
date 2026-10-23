@@ -36,12 +36,12 @@ public class PaisController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Lista de países formatada retornada com sucesso",
-                    content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(type = "string", example = "BR - Brazil")))
+                    content = @Content(array = @ArraySchema(schema = @Schema(type = "string", example = "BR - Brazil")))
             ),
             @ApiResponse(
                     responseCode = "500",
                     description = "Erro ao comunicar-se com a API externa de geolocalização",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
     public List<String> listarPaises(){
