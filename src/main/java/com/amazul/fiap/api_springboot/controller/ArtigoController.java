@@ -62,6 +62,7 @@ public class ArtigoController {
     public PageResponse<ArtigoResponse> listar(
             @Parameter(description = "Número da página (base 0)", example = "0")
             @RequestParam(required = false, defaultValue = "0") Integer pagina,
+
             @Parameter(description = "Quantidade de artigos por página", example = "10")
             @RequestParam(required = false, defaultValue = "10") Integer tamanho){
         return PageResponse.from(artigoService.listarTodos(pagina, tamanho));
@@ -85,7 +86,7 @@ public class ArtigoController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Artigo não encontrado para o ID informado",
+                    description = "Artigo não encontrado",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
             ),
             @ApiResponse(
@@ -95,7 +96,10 @@ public class ArtigoController {
             )
     })
     public ResponseEntity<ArtigoResponse> listarUnico(
-            @Parameter(description = "Identificador numérico positivo do artigo", example = "1", required = true)
+            @Parameter(
+                    description = "Identificador numérico positivo do artigo",
+                    example = "1",
+                    required = true)
             @PathVariable @Validated @Positive Long id){
         return ResponseEntity.ok(ArtigoMapper.toResponse(artigoService.findById(id)));
     }
@@ -113,7 +117,7 @@ public class ArtigoController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Parâmetros de busca ou paginação inválidos",
+                    description = "Parâmetros de busca/paginação inválidos",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
             ),
             @ApiResponse(
@@ -162,7 +166,7 @@ public class ArtigoController {
     @PostMapping("/{id}/fontes")
     @Operation(
             summary = "Adicionar fonte à lista de referências do artigo",
-            description = "Associa uma fonte científica cadastrada como referência bibliográfica de um artigo."
+            description = "Associa uma fonte cadastrada como referência de um artigo."
     )
     @ApiResponses(value = {
             @ApiResponse(
@@ -187,8 +191,9 @@ public class ArtigoController {
             )
     })
     public ResponseEntity<ArtigoResponse> associarFonte(
-            @Parameter(description = "Identificador numérico positivo do artigo", example = "1", required = true)
+            @Parameter(description = "ID numérico positivo do artigo", example = "1", required = true)
             @PathVariable @Validated @Positive Long id,
+
             @RequestBody @Valid ArtigoFonteRequest request){
         return ResponseEntity.ok(artigoService.associarFonteAoArtigo(id, request));
     }
@@ -219,6 +224,7 @@ public class ArtigoController {
     public ResponseEntity<Void> removerFonteDoArtigo(
             @Parameter(description = "Identificador numérico positivo do artigo", example = "1", required = true)
             @PathVariable @Validated @Positive Long id,
+
             @Parameter(description = "Identificador numérico positivo da fonte a remover", example = "1", required = true)
             @PathVariable @Validated @Positive Long fonteId){
         artigoService.desassociarFonte(id, fonteId);
@@ -329,6 +335,7 @@ public class ArtigoController {
     public ResponseEntity<ArtigoResponse> alterarStatus(
             @Parameter(description = "Identificador numérico positivo do artigo", example = "1", required = true)
             @PathVariable @Validated @Positive Long id,
+
             @Parameter(description = "Novo status desejado para o artigo", example = "PUBLICADO", required = true)
             @RequestParam @Valid StatusArtigo status){
         return ResponseEntity.ok(artigoService.mudarStatus(id, status));
@@ -358,7 +365,11 @@ public class ArtigoController {
             )
     })
     public ResponseEntity<Void> apagar(
-            @Parameter(description = "Identificador numérico positivo do artigo", example = "1", required = true)
+            @Parameter(
+                    description = "Identificador numérico positivo do artigo",
+                    example = "1",
+                    required = true
+            )
             @PathVariable @Validated @Positive Long id){
         artigoService.apagar(id);
         return ResponseEntity.noContent().build();

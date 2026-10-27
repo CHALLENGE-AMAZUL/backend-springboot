@@ -64,13 +64,13 @@ public class FonteController {
 
     @GetMapping("/{id}")
     @Operation(
-            summary = "Lista única fonte com parâmetro id",
+            summary = "Lista fonte única com parâmetro id",
             description = "Recupera uma fonte bibliográfica e científica específica a partir de seu ID."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Fonte científica recuperada com sucesso",
+                    description = "Fonte encontrada com sucesso",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = FonteResponse.class))
             ),
             @ApiResponse(
@@ -98,7 +98,7 @@ public class FonteController {
     @PostMapping
     @Operation(
             summary = "Criação de fonte de artigo",
-            description = "Registra uma nova fonte de informação primária ou referência científica oficial no acervo."
+            description = "Registra uma nova fonte de informação ou referência oficial de um artigo."
     )
     @ApiResponses(value = {
             @ApiResponse(
@@ -180,7 +180,11 @@ public class FonteController {
             )
     })
     public ResponseEntity<Void> apagar(
-            @Parameter(description = "Identificador numérico positivo da fonte", example = "1", required = true)
+            @Parameter(
+                    description = "Identificador numérico positivo da fonte",
+                    example = "1",
+                    required = true
+            )
             @PathVariable @Validated @Positive Long id){
         fonteService.apagar(id);
         return ResponseEntity.noContent().build();

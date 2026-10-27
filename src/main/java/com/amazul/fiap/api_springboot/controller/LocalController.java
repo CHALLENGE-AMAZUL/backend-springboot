@@ -125,7 +125,7 @@ public class LocalController {
     @PutMapping("/{id}")
     @Operation(
             summary = "Atualizar local existente",
-            description = "Atualiza o nome e/ou o código de país de um local existente, atualizando coordenadas geográficas associadas."
+            description = "Atualiza o nome e/ou o código de país de um local existente, atualizando coordenadas geográficas."
     )
     @ApiResponses(value = {
             @ApiResponse(
@@ -150,7 +150,7 @@ public class LocalController {
             )
     })
     public ResponseEntity<LocalResponse> atualizar(
-            @Parameter(description = "Identificador numérico positivo do local", example = "1", required = true)
+            @Parameter(description = "ID numérico positivo do local", example = "1", required = true)
             @PathVariable @Validated @Positive Long id,
             @RequestBody @Valid LocalRequest request){
         return ResponseEntity.ok(localService.atualizar(id, request));
@@ -180,7 +180,7 @@ public class LocalController {
             )
     })
     public ResponseEntity<Void> apagar(
-            @Parameter(description = "Identificador numérico positivo do local", example = "1", required = true)
+            @Parameter(description = "ID numérico positivo do local", example = "1", required = true)
             @PathVariable @Validated @Positive Long id){
         localService.apagar(id);
         return ResponseEntity.noContent().build();

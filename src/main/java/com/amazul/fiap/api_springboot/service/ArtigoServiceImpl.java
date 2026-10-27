@@ -46,17 +46,15 @@ public class ArtigoServiceImpl implements ArtigoService{
     public ArtigoResponse criar(ArtigoRequest request){
         Artigo artigo = new Artigo();
 
-//        if(request.local() != null){
-//            artigo.set().setNome(request.local().nome());
-//            artigo.getLocal().setCodigoPais(request.local().codigoPais());
-//        }
-
         artigo.setId(null);
         artigo.setTitulo(request.titulo());
         artigo.setResumo(request.resumo());
         artigo.setAplicacaoReal(request.aplicacaoReal());
         artigo.setImpactoSociedade(request.impactoSociedade());
         artigo.setAreaAplicacao(request.area());
+        if(request.localId() != null){
+            artigo.setLocal((localService.findById(request.localId())));
+        }
 
         artigo.setAtualizadoEm(Date.from(Instant.now()));
 
@@ -99,6 +97,8 @@ public class ArtigoServiceImpl implements ArtigoService{
         Local local = localService.findById(localId);
         Artigo artigo = findById(artigoId);
         artigo.setLocal(local);
+        artigo.setAtualizadoEm(Date.from(Instant.now()));
+
         repository.save(artigo);
         return ArtigoMapper.toResponse(artigo);
     }
@@ -115,6 +115,7 @@ public class ArtigoServiceImpl implements ArtigoService{
         artigoFonte.setObservacao(request.observacao());
 
         artigo.getReferencias().add(artigoFonte);
+        artigo.setAtualizadoEm(Date.from(Instant.now()));
 
         repository.save(artigo);
         return ArtigoMapper.toResponse(artigo);
@@ -127,6 +128,7 @@ public class ArtigoServiceImpl implements ArtigoService{
         artigo.getReferencias().removeIf(referencia ->
                 referencia.getFonte() != null &&
                 referencia.getFonte().getId().equals(fonteId));
+        artigo.setAtualizadoEm(Date.from(Instant.now()));
 
         repository.save(artigo);
         return ArtigoMapper.toResponse(artigo);
@@ -142,6 +144,9 @@ public class ArtigoServiceImpl implements ArtigoService{
             return null;
         }
         artigo.setStatus(status);
+        artigo.setAtualizadoEm(Date.from(Instant.now()));
+
+        repository.save(artigo);
         return ArtigoMapper.toResponse(artigo);
     }
 
