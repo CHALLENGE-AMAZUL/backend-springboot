@@ -7,7 +7,7 @@ info:
 
 http:
   method: GET
-  url: "{{baseUrl}}/api/artigos/busca"
+  url: "{{baseUrl}}/api/artigos/buscaPorTItulo"
   params:
     - name: titulo
       value: "Radiofármacos"
@@ -31,7 +31,7 @@ examples:
   - name: 200 Response
     description: Artigos contendo o texto inserido listados
     request:
-      url: "{{baseUrl}}/api/artigos/busca"
+      url: "{{baseUrl}}/api/artigos/buscaPorTItulo"
       method: GET
       params:
         - name: titulo

@@ -11,6 +11,7 @@ public interface ArtigoService {
     Artigo findById(Long id);
     Page<ArtigoResponse> listarTodos(Integer pagina, Integer tamanho);
     Page<ArtigoResponse> buscarPorTitulo(String titulo, Integer pagina, Integer tamanho);
+    Page<ArtigoResponse> buscarPorPais(String pais, Integer pagina, Integer tamanho);
     ArtigoResponse criar(ArtigoRequest request);
     ArtigoResponse atualizar(Long id, ArtigoRequest request);
     ArtigoResponse inserirOuAtualizarLocal(Long artigoId, Long localId);

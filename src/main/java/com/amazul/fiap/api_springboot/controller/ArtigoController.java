@@ -104,7 +104,7 @@ public class ArtigoController {
         return ResponseEntity.ok(ArtigoMapper.toResponse(artigoService.findById(id)));
     }
 
-    @GetMapping("/busca")
+    @GetMapping("/buscaPorTitulo")
     @Operation(
             summary = "Lista todos os artigos que contenham o título inserido",
             description = "Pesquisa textual case-insensitive no título dos artigos cadastrados com suporte a paginação."
@@ -129,11 +129,47 @@ public class ArtigoController {
     public PageResponse<ArtigoResponse> exibirPorTitulo(
             @Parameter(description = "Termo ou palavra-chave para busca no título", example = "Radiofármacos", required = true)
             @RequestParam() String titulo,
+
             @Parameter(description = "Número da página (base 0)", example = "0")
             @RequestParam(required = false, defaultValue = "0") Integer pagina,
+
             @Parameter(description = "Quantidade de registros por página", example = "10")
             @RequestParam(required = false, defaultValue = "10") Integer tamanho){
         return PageResponse.from(artigoService.buscarPorTitulo(titulo, pagina, tamanho));
+    }
+
+    @GetMapping("/buscaPorPais")
+    @Operation(
+            summary = "Lista todos os artigos que estiverem no país inserido (conforme a lista de países - inglês)",
+            description = "Pesquisa de artigos por país com suporte a paginação."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Artigos do país inserido listados com sucesso",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = PageResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Parâmetros de busca/paginação inválidos",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro interno no servidor",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            )
+    })
+    public PageResponse<ArtigoResponse> exibirPorPais(
+            @Parameter(description = "País de busca dos artigos", example = "Radiofármacos", required = true)
+            @RequestParam() String pais,
+
+            @Parameter(description = "Número da página (base 0)", example = "0")
+            @RequestParam(required = false, defaultValue = "0") Integer pagina,
+
+            @Parameter(description = "Quantidade de registros por página", example = "10")
+            @RequestParam(required = false, defaultValue = "10") Integer tamanho){
+        return PageResponse.from(artigoService.buscarPorTitulo(pais, pagina, tamanho));
     }
 
     @PostMapping
@@ -261,6 +297,7 @@ public class ArtigoController {
     public ResponseEntity<ArtigoResponse> adicionarOuAtualizarLocal(
             @Parameter(description = "Identificador numérico positivo do artigo", example = "1", required = true)
             @PathVariable @Validated @Positive Long id,
+
             @Parameter(description = "Identificador numérico positivo do local", example = "1", required = true)
             @PathVariable @Validated @Positive Long localId){
         return ResponseEntity.ok(artigoService.inserirOuAtualizarLocal(id, localId));
