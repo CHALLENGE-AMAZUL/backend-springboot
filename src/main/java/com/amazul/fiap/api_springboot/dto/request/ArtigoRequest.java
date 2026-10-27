@@ -14,7 +14,10 @@ public record ArtigoRequest(
                 requiredMode = Schema.RequiredMode.REQUIRED
         )
         @NotBlank(message = "Título deve ser inserido!")
-        @Size(max = 150, message = "O título deve ter no máximo 150 caracteres")
+        @Size(
+                max = 150,
+                message = "O título deve ter no máximo 150 caracteres"
+        )
         String titulo,
 
         @Schema(description = "Resumo do conceito apresentado",
@@ -23,7 +26,10 @@ public record ArtigoRequest(
                 requiredMode = Schema.RequiredMode.REQUIRED
         )
         @NotBlank(message = "Resumo deve ser inserido!")
-        @Size(max = 500, message = "O resumo deve ter até 500 caracteres")
+        @Size(
+                max = 500,
+                message = "O resumo deve ter até 500 caracteres"
+        )
         String resumo,
 
         @Schema(description = "Exemplo prático e científico da tecnologia nuclear em operação",
@@ -46,7 +52,9 @@ public record ArtigoRequest(
         @NotNull(message = "Área de aplicação deve ser inserida")
         AreaAplicacao area,
 
-        LocalRequest local
-        //List<ArtigoFonte> referencias;
+        @Schema(description = "ID de um local já cadastrado",
+                example = "2"
+        )
+        Long localId
 ){
 }

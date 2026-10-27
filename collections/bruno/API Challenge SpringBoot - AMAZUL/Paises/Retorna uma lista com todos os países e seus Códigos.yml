@@ -28,12 +28,18 @@ examples:
       statusText: OK
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
       body:
         type: text
         data: |-
           [
-            ""
+            "AF - Afghanistan",
+            "AL - Albania",
+            "BR - Brazil",
+            "CA - Canada",
+            "FR - France",
+            "JP - Japan",
+            "US - United States"
           ]
   - name: 500 Response
     description: Erro ao comunicar-se com a API externa de geolocalização
@@ -45,15 +51,15 @@ examples:
       statusText: Internal Server Error
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
       body:
         type: text
         data: |-
           {
-            "mensagem": "Artigo de id (999) não encontrado!",
-            "erro": "Not Found",
-            "status": 404,
-            "timestamp": "2026-10-21T01:30:00"
+            "mensagem": "Erro interno inesperado.",
+            "erro": "Internal Server Error",
+            "status": 500,
+            "timestamp": "2026-10-26T22:00:00"
           }
 
-docs: "Exemplo: BR - Brasil"
+docs: Consulta o catálogo internacional da API Country State City e retorna lista de países formatados no padrão 'ISO2 - Nome'.

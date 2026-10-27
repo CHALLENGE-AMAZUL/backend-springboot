@@ -1,11 +1,11 @@
 package com.amazul.fiap.api_springboot.service;
 
+import com.amazul.fiap.api_springboot.dto.request.ArtigoFonteRequest;
 import com.amazul.fiap.api_springboot.dto.request.ArtigoRequest;
 import com.amazul.fiap.api_springboot.dto.response.ArtigoResponse;
 import com.amazul.fiap.api_springboot.exception.ResourceNotFoundException;
 import com.amazul.fiap.api_springboot.mapper.ArtigoMapper;
-import com.amazul.fiap.api_springboot.model.Artigo;
-import com.amazul.fiap.api_springboot.model.StatusArtigo;
+import com.amazul.fiap.api_springboot.model.*;
 import com.amazul.fiap.api_springboot.repository.ArtigoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,10 +17,15 @@ import java.util.Date;
 @Service
 public class ArtigoServiceImpl implements ArtigoService{
     private final ArtigoRepository repository;
+    private final LocalService localService;
+    private final FonteService fonteService;
 
-    public ArtigoServiceImpl(ArtigoRepository repository){
+    public ArtigoServiceImpl(ArtigoRepository repository, LocalService localService, FonteService fonteService){
         this.repository = repository;
+        this.localService = localService;
+        this.fonteService = fonteService;
     }
+
     @Override
     public Page<ArtigoResponse> listarTodos(Integer pagina, Integer tamanho) {
         Pageable pageable = Pageable.ofSize(tamanho).withPage(pagina);
@@ -62,7 +67,6 @@ public class ArtigoServiceImpl implements ArtigoService{
     @Override
     public ArtigoResponse atualizar(Long id, ArtigoRequest request) {
         Artigo artigo = findById(id);
-        artigo.setStatus(StatusArtigo.RASCUNHO);
 
         if(request.titulo() != null && !request.titulo().isBlank()){
             artigo.setTitulo(request.titulo());
@@ -80,11 +84,49 @@ public class ArtigoServiceImpl implements ArtigoService{
             artigo.setImpactoSociedade(request.impactoSociedade());
         }
 
-        //Decidir Local
-//        if(request.local() != null){
-//
-//        }
+        if(request.localId() != null){
+            artigo.setLocal((localService.findById(request.localId())));
+        }
+
         artigo.setAtualizadoEm(Date.from(Instant.now()));
+
+        repository.save(artigo);
+        return ArtigoMapper.toResponse(artigo);
+    }
+
+    @Override
+    public ArtigoResponse inserirOuAtualizarLocal(Long artigoId, Long localId) {
+        Local local = localService.findById(localId);
+        Artigo artigo = findById(artigoId);
+        artigo.setLocal(local);
+        repository.save(artigo);
+        return ArtigoMapper.toResponse(artigo);
+    }
+
+    @Override
+    public ArtigoResponse associarFonteAoArtigo(Long artigoId, ArtigoFonteRequest request) {
+        Artigo artigo = findById(artigoId);
+        Fonte fonte = fonteService.findById(request.fonteId());
+
+        ArtigoFonte artigoFonte = new ArtigoFonte();
+
+        artigoFonte.setArtigo(artigo);
+        artigoFonte.setFonte(fonte);
+        artigoFonte.setObservacao(request.observacao());
+
+        artigo.getReferencias().add(artigoFonte);
+
+        repository.save(artigo);
+        return ArtigoMapper.toResponse(artigo);
+    }
+
+    @Override
+    public ArtigoResponse desassociarFonte(Long artigoId, Long fonteId) {
+        Artigo artigo = findById(artigoId);
+
+        artigo.getReferencias().removeIf(referencia ->
+                referencia.getFonte() != null &&
+                referencia.getFonte().getId().equals(fonteId));
 
         repository.save(artigo);
         return ArtigoMapper.toResponse(artigo);

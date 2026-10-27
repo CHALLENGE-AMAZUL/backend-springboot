@@ -98,6 +98,10 @@
 			<version>5.0.1</version>
 			<scope>developmentOnly</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc11</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -14,7 +14,10 @@ public record LocalRequest(
                 requiredMode = Schema.RequiredMode.REQUIRED
         )
         @NotBlank(message = "O nome do local não pode ser vazio")
-        @Size(max = 150, message = "O nome do local deve ter no máximo 150 caracteres.")
+        @Size(
+                max = 150,
+                message = "O nome do local deve ter no máximo 150 caracteres."
+        )
         String nome,
 
         @Schema(
@@ -23,6 +26,9 @@ public record LocalRequest(
                 nullable = true,
                 requiredMode = Schema.RequiredMode.NOT_REQUIRED
         )
-        @Pattern(regexp = "^[A-Z]{2}$", message = "O código do país deve seguir o padrão ISO-2 com 2 letras maiúsculas (ex: BR, US)")
+        @Pattern(
+                regexp = "^[A-Z]{2}$",
+                message = "O código do país deve seguir o padrão ISO-2 com 2 letras maiúsculas (ex: BR, US)"
+        )
         String codigoPais) {
 }

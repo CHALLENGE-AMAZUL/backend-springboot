@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "fonte")
 public class Fonte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,7 @@ public class Fonte {
     private String titulo;
 
     @NotBlank(message = "URL deve ser inserida.")
+    @Column(unique = true, nullable = false)
     private String url;
 
     @OneToMany(mappedBy = "fonte")

@@ -1,7 +1,7 @@
 info:
   name: Criar novo artigo
   type: http
-  seq: 6
+  seq: 4
   tags:
     - Artigo
 
@@ -17,10 +17,7 @@ http:
         "aplicacaoReal": "Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.",
         "impactoSociedade": "Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.",
         "area": "SAUDE",
-        "local": {
-          "nome": "Complexo radiológico de Iperó/Aramar (CTMSP)",
-          "codigoPais": "BR"
-        }
+        "localId": 1
       }
   auth: inherit
 
@@ -46,27 +43,70 @@ examples:
             "aplicacaoReal": "Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.",
             "impactoSociedade": "Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.",
             "area": "SAUDE",
-            "local": {
-              "nome": "Complexo radiológico de Iperó/Aramar (CTMSP)",
-              "codigoPais": "BR"
-            }
+            "localId": 1
           }
     response:
       status: 201
       statusText: Created
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
+        - name: Location
+          value: /api/artigos/1
       body:
         type: text
         data: |-
           {
-            "conteudo": [
-              {}
-            ],
-            "pagina": 0,
-            "tamanho": 10,
-            "totalElementos": 42,
-            "totalPaginas": 5,
-            "ultimo": false
+            "id": 1,
+            "areaAplicacao": "SAUDE",
+            "titulo": "Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico",
+            "resumo": "Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.",
+            "aplicacaoReal": "Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.",
+            "impactoSociedade": "Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.",
+            "nomeLocal": "Complexo radiológico de Iperó/Aramar (CTMSP)",
+            "paisLocal": "Brazil",
+            "status": "RASCUNHO",
+            "referencias": [],
+            "atualizadoEm": "2026-10-26T22:00:00.000Z"
           }
+  - name: 400 Response
+    description: Erro de validação de campos obrigatórios
+    request:
+      url: "{{baseUrl}}/api/artigos"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "titulo": "",
+            "resumo": "",
+            "aplicacaoReal": "",
+            "impactoSociedade": "",
+            "area": null
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: text
+        data: |-
+          {
+            "erro": "Bad Request",
+            "status": 400,
+            "campos": [
+              {
+                "campo": "titulo",
+                "mensagem": "Título deve ser inserido!"
+              },
+              {
+                "campo": "area",
+                "mensagem": "Área de aplicação deve ser inserida"
+              }
+            ],
+            "timestamp": "2026-10-26T22:00:00"
+          }
+
+docs: Cadastra um novo artigo educativo na base de dados com status inicial RASCUNHO.

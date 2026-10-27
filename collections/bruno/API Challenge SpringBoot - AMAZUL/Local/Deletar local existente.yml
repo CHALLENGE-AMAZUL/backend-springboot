@@ -1,7 +1,7 @@
 info:
   name: Deletar local existente
   type: http
-  seq: 3
+  seq: 5
   tags:
     - Local
 
@@ -10,7 +10,7 @@ http:
   url: "{{baseUrl}}/api/locais/:id"
   params:
     - name: id
-      value: ""
+      value: "1"
       type: path
   auth: inherit
 
@@ -29,7 +29,7 @@ examples:
       method: DELETE
       params:
         - name: id
-          value: ""
+          value: "1"
           type: path
     response:
       status: 204
@@ -37,30 +37,6 @@ examples:
       body:
         type: text
         data: ""
-  - name: 400 Response
-    description: ID do local inválido ou não positivo
-    request:
-      url: "{{baseUrl}}/api/locais/:id"
-      method: DELETE
-      params:
-        - name: id
-          value: ""
-          type: path
-    response:
-      status: 400
-      statusText: Bad Request
-      headers:
-        - name: Content-Type
-          value: "*/*"
-      body:
-        type: text
-        data: |-
-          {
-            "mensagem": "Artigo de id (999) não encontrado!",
-            "erro": "Not Found",
-            "status": 404,
-            "timestamp": "2026-10-21T01:30:00"
-          }
   - name: 404 Response
     description: Local não encontrado para o ID informado
     request:
@@ -68,46 +44,22 @@ examples:
       method: DELETE
       params:
         - name: id
-          value: ""
+          value: "999"
           type: path
     response:
       status: 404
       statusText: Not Found
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
       body:
         type: text
         data: |-
           {
-            "mensagem": "Artigo de id (999) não encontrado!",
+            "mensagem": "Local de id (999) não encontrado!",
             "erro": "Not Found",
             "status": 404,
-            "timestamp": "2026-10-21T01:30:00"
-          }
-  - name: 500 Response
-    description: Erro interno no servidor
-    request:
-      url: "{{baseUrl}}/api/locais/:id"
-      method: DELETE
-      params:
-        - name: id
-          value: ""
-          type: path
-    response:
-      status: 500
-      statusText: Internal Server Error
-      headers:
-        - name: Content-Type
-          value: "*/*"
-      body:
-        type: text
-        data: |-
-          {
-            "mensagem": "Artigo de id (999) não encontrado!",
-            "erro": "Not Found",
-            "status": 404,
-            "timestamp": "2026-10-21T01:30:00"
+            "timestamp": "2026-10-26T22:00:00"
           }
 
 docs: Remove definitivamente um ponto geográfico ou instalação da base de dados.

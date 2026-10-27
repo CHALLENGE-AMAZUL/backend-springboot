@@ -1,7 +1,7 @@
 info:
   name: Atualizar artigo existente
   type: http
-  seq: 2
+  seq: 8
   tags:
     - Artigo
 
@@ -10,21 +10,18 @@ http:
   url: "{{baseUrl}}/api/artigos/:id"
   params:
     - name: id
-      value: ""
+      value: "1"
       type: path
   body:
     type: json
     data: |-
       {
-        "titulo": "Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico",
+        "titulo": "Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico (Revisado)",
         "resumo": "Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.",
         "aplicacaoReal": "Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.",
         "impactoSociedade": "Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.",
         "area": "SAUDE",
-        "local": {
-          "nome": "Complexo radiológico de Iperó/Aramar (CTMSP)",
-          "codigoPais": "BR"
-        }
+        "localId": 1
       }
   auth: inherit
 
@@ -43,38 +40,66 @@ examples:
       method: PUT
       params:
         - name: id
-          value: ""
+          value: "1"
           type: path
       body:
         type: json
         data: |-
           {
-            "titulo": "Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico",
+            "titulo": "Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico (Revisado)",
             "resumo": "Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.",
             "aplicacaoReal": "Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.",
             "impactoSociedade": "Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.",
             "area": "SAUDE",
-            "local": {
-              "nome": "Complexo radiológico de Iperó/Aramar (CTMSP)",
-              "codigoPais": "BR"
-            }
+            "localId": 1
           }
     response:
       status: 200
       statusText: OK
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
       body:
         type: text
         data: |-
           {
-            "conteudo": [
-              {}
+            "id": 1,
+            "areaAplicacao": "SAUDE",
+            "titulo": "Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico (Revisado)",
+            "resumo": "Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.",
+            "aplicacaoReal": "Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.",
+            "impactoSociedade": "Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.",
+            "nomeLocal": "Complexo radiológico de Iperó/Aramar (CTMSP)",
+            "paisLocal": "Brazil",
+            "status": "RASCUNHO",
+            "referencias": [
+              "https://www.marinha.mil.br/ctmsp/programa-nuclear"
             ],
-            "pagina": 0,
-            "tamanho": 10,
-            "totalElementos": 42,
-            "totalPaginas": 5,
-            "ultimo": false
+            "atualizadoEm": "2026-10-26T22:00:00.000Z"
           }
+  - name: 404 Response
+    description: Artigo não encontrado para o ID informado
+    request:
+      url: "{{baseUrl}}/api/artigos/:id"
+      method: PUT
+      params:
+        - name: id
+          value: "999"
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: text
+        data: |-
+          {
+            "mensagem": "Artigo de id (999) não encontrado!",
+            "erro": "Not Found",
+            "status": 404,
+            "timestamp": "2026-10-26T22:00:00"
+          }
+
+docs: Atualiza os campos informados de um artigo existente e renova o carimbo de data da última modificação.

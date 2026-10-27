@@ -1,7 +1,7 @@
 info:
   name: Atualizar fonte de artigo existente
   type: http
-  seq: 2
+  seq: 4
   tags:
     - Fonte
 
@@ -10,13 +10,13 @@ http:
   url: "{{baseUrl}}/api/fontes/:id"
   params:
     - name: id
-      value: ""
+      value: "1"
       type: path
   body:
     type: json
     data: |-
       {
-        "titulo": "Programa Nuclear da Marinha - CTMSP",
+        "titulo": "Programa Nuclear da Marinha - CTMSP (Atualizado)",
         "url": "https://www.marinha.mil.br/ctmsp/programa-nuclear"
       }
   auth: inherit
@@ -30,19 +30,19 @@ settings:
 
 examples:
   - name: 200 Response
-    description: OK
+    description: Fonte atualizada com sucesso
     request:
       url: "{{baseUrl}}/api/fontes/:id"
       method: PUT
       params:
         - name: id
-          value: ""
+          value: "1"
           type: path
       body:
         type: json
         data: |-
           {
-            "titulo": "Programa Nuclear da Marinha - CTMSP",
+            "titulo": "Programa Nuclear da Marinha - CTMSP (Atualizado)",
             "url": "https://www.marinha.mil.br/ctmsp/programa-nuclear"
           }
     response:
@@ -50,14 +50,42 @@ examples:
       statusText: OK
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
       body:
         type: text
         data: |-
           {
-            "id": 0,
-            "titulo": "",
-            "url": "",
-            "artigos": [],
-            "atualizadoEm": ""
+            "id": 1,
+            "titulo": "Programa Nuclear da Marinha - CTMSP (Atualizado)",
+            "url": "https://www.marinha.mil.br/ctmsp/programa-nuclear",
+            "artigos": [
+              "Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico"
+            ],
+            "atualizadoEm": "2026-10-26T22:00:00.000Z"
           }
+  - name: 404 Response
+    description: Fonte não encontrada para o ID informado
+    request:
+      url: "{{baseUrl}}/api/fontes/:id"
+      method: PUT
+      params:
+        - name: id
+          value: "999"
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: text
+        data: |-
+          {
+            "mensagem": "Fonte de id (999) não encontrado!",
+            "erro": "Not Found",
+            "status": 404,
+            "timestamp": "2026-10-26T22:00:00"
+          }
+
+docs: Atualiza os dados de título e URL de uma referência científica existente.

@@ -14,8 +14,8 @@ public final class FonteMapper {
         List<String> artigos = fonte.getArtigos() == null ? List.of() : fonte.getArtigos()
                 .stream()
                 .filter(r -> r.getFonte() != null)
-                .map(r -> r.getFonte().getUrl())
-                .filter(url -> url != null && !url.isBlank())
+                .map(r -> r.getArtigo().getTitulo())
+                .filter(titulo -> titulo != null && !titulo.isBlank())
                 .toList();
 
         return new FonteResponse(

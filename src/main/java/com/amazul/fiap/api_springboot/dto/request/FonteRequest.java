@@ -13,7 +13,10 @@ public record FonteRequest(
                 requiredMode = Schema.RequiredMode.REQUIRED
         )
         @NotBlank(message = "Título deve ser inserido!")
-        @Size(max = 150, message = "Título deve ter no máximo 150 caracteres")
+        @Size(
+                max = 150,
+                message = "Título deve ter no máximo 150 caracteres"
+        )
         String titulo,
 
         @Schema(description = "Link direto do artigo, publicação técnica ou repositório oficial",
@@ -22,7 +25,10 @@ public record FonteRequest(
                 requiredMode = Schema.RequiredMode.REQUIRED
         )
         @NotBlank(message = "URL da fonte deve ser inserida!")
-        @Size(max = 500, message = "URL da fonte deve ter no máximo 500 caracteres!")
+        @Size(
+                max = 500,
+                message = "URL da fonte deve ter no máximo 500 caracteres!"
+        )
         @URL(message = "A URL informada deve possuir um formato válido!")
         String url
 

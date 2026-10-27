@@ -1,0 +1,104 @@
+info:
+  name: Adicionar fonte a lista de referências
+  type: http
+  seq: 5
+  tags:
+    - Artigo
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/artigos/:id/fontes"
+  params:
+    - name: id
+      value: "1"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "fonteId": 1,
+        "observacao": "Capítulo 4, Tabela 2 - Decaimento do Mo-99"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: Fonte associada ao artigo com sucesso
+    request:
+      url: "{{baseUrl}}/api/artigos/:id/fontes"
+      method: POST
+      params:
+        - name: id
+          value: "1"
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "fonteId": 1,
+            "observacao": "Capítulo 4, Tabela 2 - Decaimento do Mo-99"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: text
+        data: |-
+          {
+            "id": 1,
+            "areaAplicacao": "SAUDE",
+            "titulo": "Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico",
+            "resumo": "Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.",
+            "aplicacaoReal": "Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.",
+            "impactoSociedade": "Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.",
+            "nomeLocal": "Complexo radiológico de Iperó/Aramar (CTMSP)",
+            "paisLocal": "Brazil",
+            "status": "RASCUNHO",
+            "referencias": [
+              "https://www.marinha.mil.br/ctmsp/programa-nuclear"
+            ],
+            "atualizadoEm": "2026-10-26T22:00:00.000Z"
+          }
+  - name: 404 Response
+    description: Artigo ou Fonte não encontrados
+    request:
+      url: "{{baseUrl}}/api/artigos/:id/fontes"
+      method: POST
+      params:
+        - name: id
+          value: "999"
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "fonteId": 1,
+            "observacao": "Observação"
+          }
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: text
+        data: |-
+          {
+            "mensagem": "Artigo de id (999) não encontrado!",
+            "erro": "Not Found",
+            "status": 404,
+            "timestamp": "2026-10-26T22:00:00"
+          }
+
+docs: Associa uma fonte científica cadastrada como referência bibliográfica de um artigo.

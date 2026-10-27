@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @OpenAPIDefinition(
         info = @Info(
-                title = "API Challenge SpringBoot - AMAZUL",
+                title = "AMAZUL - Plataforma Educativa de Divulgação Nuclear",
                 version = "v1",
-                description = "API do projeto SpringBoot para o Challenge Fiap 2026-27, que trabalha com registro de artigos referente à tecnologia nuclear."
+                description = "API RESTful do projeto educativo em parceria acadêmica com a AMAZUL e o CTMSP. Disponibiliza conteúdos científicos, mapeamento geográfico de instalações e acervo de referências bibliográficas."
         ),
         servers = {
-                @Server(url = "http://localhost:8080", description = "Ambiente local")
+                @Server(url = "http://localhost:8080", description = "Ambiente de Desenvolvimento Local")
         }
 )
 public class OpenApiConfig {

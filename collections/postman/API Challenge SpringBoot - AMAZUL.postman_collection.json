@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "c349647d-b020-4dec-8432-34ef8d509565",
     "name": "API Challenge SpringBoot - AMAZUL",
-    "description": "API do projeto SpringBoot para o Challenge Fiap 2026-27, que trabalha com registro de artigos referente à tecnologia nuclear.",
+    "description": "API RESTful do projeto educativo em parceria acadêmica com a AMAZUL e o CTMSP. Disponibiliza conteúdos científicos, mapeamento geográfico de instalações e acervo de referências bibliográficas.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "44635416"
   },
@@ -39,7 +39,7 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "2983"
+                          "value": "1"
                         }
                       ]
                     }
@@ -83,7 +83,7 @@
                         }
                       ],
                       "cookie": [],
-                      "body": "{\n  \"id\": 1066,\n  \"nome\": \"string\",\n  \"cidade\": \"string\",\n  \"nomePais\": \"string\",\n  \"codigoPais\": \"string\",\n  \"latitude\": \"string\",\n  \"longitude\": \"string\"\n}"
+                      "body": "{\n  \"id\": 1,\n  \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"cidade\": null,\n  \"nomePais\": \"Brazil\",\n  \"codigoPais\": \"BR\",\n  \"latitude\": \"-10.00000000\",\n  \"longitude\": \"-55.00000000\"\n}"
                     }
                   ]
                 },
@@ -124,7 +124,7 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "2983"
+                          "value": "1"
                         }
                       ]
                     }
@@ -182,7 +182,7 @@
                         }
                       ],
                       "cookie": [],
-                      "body": "{\n  \"id\": 1066,\n  \"nome\": \"string\",\n  \"cidade\": \"string\",\n  \"nomePais\": \"string\",\n  \"codigoPais\": \"string\",\n  \"latitude\": \"string\",\n  \"longitude\": \"string\"\n}"
+                      "body": "{\n  \"id\": 1,\n  \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"cidade\": null,\n  \"nomePais\": \"Brazil\",\n  \"codigoPais\": \"BR\",\n  \"latitude\": \"-10.00000000\",\n  \"longitude\": \"-55.00000000\"\n}"
                     }
                   ]
                 },
@@ -209,7 +209,7 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "2983"
+                          "value": "1"
                         }
                       ]
                     },
@@ -444,7 +444,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                  "body": "{\n  \"conteudo\": [\n    {\n      \"id\": 1,\n      \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n      \"cidade\": null,\n      \"nomePais\": \"Brazil\",\n      \"codigoPais\": \"BR\",\n      \"latitude\": \"-10.00000000\",\n      \"longitude\": \"-55.00000000\"\n    }\n  ],\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 1,\n  \"totalPaginas\": 1,\n  \"ultimo\": true\n}"
                 },
                 {
                   "name": "Parâmetros de requisição inválidos",
@@ -615,7 +615,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                  "body": "{\n  \"id\": 1,\n  \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"cidade\": null,\n  \"nomePais\": \"Brazil\",\n  \"codigoPais\": \"BR\",\n  \"latitude\": \"-10.00000000\",\n  \"longitude\": \"-55.00000000\"\n}"
                 }
               ]
             }
@@ -650,7 +650,7 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "2983"
+                          "value": "1"
                         }
                       ]
                     }
@@ -694,7 +694,7 @@
                         }
                       ],
                       "cookie": [],
-                      "body": "{\n  \"id\": 7168,\n  \"titulo\": \"string\",\n  \"url\": \"string\",\n  \"artigos\": [\n    \"string\",\n    \"string\"\n  ],\n  \"atualizadoEm\": \"1962-06-15T22:49:17.060Z\"\n}"
+                      "body": "{\n  \"id\": 1,\n  \"titulo\": \"Programa Nuclear da Marinha - CTMSP\",\n  \"url\": \"https://www.marinha.mil.br/ctmsp/programa-nuclear\",\n  \"artigos\": [\n    \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\"\n  ],\n  \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n}"
                     }
                   ]
                 },
@@ -735,7 +735,7 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "2983"
+                          "value": "1"
                         }
                       ]
                     }
@@ -793,7 +793,7 @@
                         }
                       ],
                       "cookie": [],
-                      "body": "{\n  \"id\": 7168,\n  \"titulo\": \"string\",\n  \"url\": \"string\",\n  \"artigos\": [\n    \"string\",\n    \"string\"\n  ],\n  \"atualizadoEm\": \"1962-06-15T22:49:17.060Z\"\n}"
+                      "body": "{\n  \"id\": 1,\n  \"titulo\": \"Programa Nuclear da Marinha - CTMSP\",\n  \"url\": \"https://www.marinha.mil.br/ctmsp/programa-nuclear\",\n  \"artigos\": [\n    \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\"\n  ],\n  \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n}"
                     }
                   ]
                 },
@@ -820,7 +820,7 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "2983"
+                          "value": "1"
                         }
                       ]
                     },
@@ -1055,7 +1055,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                  "body": "{\n  \"conteudo\": [\n    {\n      \"id\": 1,\n      \"titulo\": \"Programa Nuclear da Marinha - CTMSP\",\n      \"url\": \"https://www.marinha.mil.br/ctmsp/programa-nuclear\",\n      \"artigos\": [\n        \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\"\n      ],\n      \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n    }\n  ],\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 1,\n  \"totalPaginas\": 1,\n  \"ultimo\": true\n}"
                 },
                 {
                   "name": "Parâmetros de paginação inválidos",
@@ -1226,7 +1226,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                  "body": "{\n  \"id\": 1,\n  \"titulo\": \"Programa Nuclear da Marinha - CTMSP\",\n  \"url\": \"https://www.marinha.mil.br/ctmsp/programa-nuclear\",\n  \"artigos\": [\n    \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\"\n  ],\n  \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n}"
                 }
               ]
             }
@@ -1261,7 +1261,7 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "2983"
+                          "value": "1"
                         }
                       ]
                     }
@@ -1305,7 +1305,7 @@
                         }
                       ],
                       "cookie": [],
-                      "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                      "body": "{\n  \"id\": 1,\n  \"areaAplicacao\": \"SAUDE\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"nomeLocal\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"paisLocal\": \"Brazil\",\n  \"status\": \"RASCUNHO\",\n  \"referencias\": [\n    \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n  ],\n  \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n}"
                     }
                   ]
                 },
@@ -1325,10 +1325,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"area\": \"SAUDE\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"local\": {\n    \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n    \"codigoPais\": \"BR\"\n  }\n}",
+                      "raw": "{\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico (Revisado)\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"area\": \"SAUDE\",\n  \"localId\": 1\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -1346,7 +1345,7 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "2983"
+                          "value": "1"
                         }
                       ]
                     }
@@ -1404,7 +1403,7 @@
                         }
                       ],
                       "cookie": [],
-                      "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                      "body": "{\n  \"id\": 1,\n  \"areaAplicacao\": \"SAUDE\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"nomeLocal\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"paisLocal\": \"Brazil\",\n  \"status\": \"RASCUNHO\",\n  \"referencias\": [\n    \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n  ],\n  \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n}"
                     }
                   ]
                 },
@@ -1431,7 +1430,7 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "2983"
+                          "value": "1"
                         }
                       ]
                     },
@@ -1589,6 +1588,156 @@
                       "body": "{\n  \"mensagem\": \"Artigo de id (999) não encontrado!\",\n  \"erro\": \"Not Found\",\n  \"status\": 404,\n  \"timestamp\": \"2026-10-21T01:30:00\"\n}"
                     }
                   ]
+                },
+                {
+                  "name": "Adicionar fonte a lista de referências",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fonteId\": 1,\n  \"observacao\": \"Capítulo 4, Tabela 2 - Decaimento do Mo-99\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos/:id/fontes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos",
+                        ":id",
+                        "fontes"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"id\": 1,\n  \"areaAplicacao\": \"SAUDE\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"nomeLocal\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"paisLocal\": \"Brazil\",\n  \"status\": \"RASCUNHO\",\n  \"referencias\": [\n    \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n  ],\n  \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "Remover fonte da lista de referências do artigo",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos/:id/fontes/:fonteId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos",
+                        ":id",
+                        "fontes",
+                        ":fonteId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1"
+                        },
+                        {
+                          "key": "fonteId",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "No Content",
+                      "status": "No Content",
+                      "code": 204,
+                      "header": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "Inserir ou atualizar local do artigo",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/artigos/:id/locais/:localId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "artigos",
+                        ":id",
+                        "locais",
+                        ":localId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1"
+                        },
+                        {
+                          "key": "localId",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "status": "OK",
+                      "code": 200,
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "body": "{\n  \"id\": 1,\n  \"areaAplicacao\": \"SAUDE\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"nomeLocal\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"paisLocal\": \"Brazil\",\n  \"status\": \"RASCUNHO\",\n  \"referencias\": [\n    \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n  ],\n  \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n}"
+                    }
+                  ]
                 }
               ]
             },
@@ -1622,13 +1771,13 @@
                           "query": [
                             {
                               "key": "status",
-                              "value": "ARQUIVADO"
+                              "value": "PUBLICADO"
                             }
                           ],
                           "variable": [
                             {
                               "key": "id",
-                              "value": "2983"
+                              "value": "1"
                             }
                           ]
                         }
@@ -1679,7 +1828,7 @@
                             }
                           ],
                           "cookie": [],
-                          "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                          "body": "{\n  \"id\": 1,\n  \"areaAplicacao\": \"SAUDE\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"nomeLocal\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"paisLocal\": \"Brazil\",\n  \"status\": \"PUBLICADO\",\n  \"referencias\": [\n    \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n  ],\n  \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n}"
                         }
                       ]
                     }
@@ -1713,7 +1862,7 @@
                       "query": [
                         {
                           "key": "titulo",
-                          "value": "string"
+                          "value": "Radiofármacos"
                         },
                         {
                           "key": "pagina",
@@ -1773,7 +1922,7 @@
                         }
                       ],
                       "cookie": [],
-                      "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                      "body": "{\n  \"conteudo\": [\n    {\n      \"id\": 1,\n      \"areaAplicacao\": \"SAUDE\",\n      \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n      \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n      \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n      \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n      \"nomeLocal\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n      \"paisLocal\": \"Brazil\",\n      \"status\": \"RASCUNHO\",\n      \"referencias\": [\n        \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n      ],\n      \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n    }\n  ],\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 1,\n  \"totalPaginas\": 1,\n  \"ultimo\": true\n}"
                     }
                   ]
                 }
@@ -1853,7 +2002,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                  "body": "{\n  \"conteudo\": [\n    {\n      \"id\": 1,\n      \"areaAplicacao\": \"SAUDE\",\n      \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n      \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n      \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n      \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n      \"nomeLocal\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n      \"paisLocal\": \"Brazil\",\n      \"status\": \"RASCUNHO\",\n      \"referencias\": [\n        \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n      ],\n      \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n    }\n  ],\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 1,\n  \"totalPaginas\": 1,\n  \"ultimo\": true\n}"
                 },
                 {
                   "name": "Parâmetros de paginação inválidos",
@@ -1959,10 +2108,9 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"area\": \"SAUDE\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"local\": {\n    \"nome\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n    \"codigoPais\": \"BR\"\n  }\n}",
+                  "raw": "{\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"area\": \"SAUDE\",\n  \"localId\": 1\n}",
                   "options": {
                     "raw": {
-                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
@@ -2024,7 +2172,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n  \"pagina\": 0,\n  \"tamanho\": 10,\n  \"totalElementos\": 42,\n  \"totalPaginas\": 5,\n  \"ultimo\": false\n}"
+                  "body": "{\n  \"id\": 1,\n  \"areaAplicacao\": \"SAUDE\",\n  \"titulo\": \"Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico\",\n  \"resumo\": \"Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.\",\n  \"aplicacaoReal\": \"Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.\",\n  \"impactoSociedade\": \"Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.\",\n  \"nomeLocal\": \"Complexo radiológico de Iperó/Aramar (CTMSP)\",\n  \"paisLocal\": \"Brazil\",\n  \"status\": \"RASCUNHO\",\n  \"referencias\": [\n    \"https://www.marinha.mil.br/ctmsp/programa-nuclear\"\n  ],\n  \"atualizadoEm\": \"2026-10-26T22:00:00.000Z\"\n}"
                 }
               ]
             }
@@ -2106,7 +2254,7 @@
                         }
                       ],
                       "cookie": [],
-                      "body": "{\n  \"name\": \"Brazil\",\n  \"iso2\": \"BR\",\n  \"latitude\": \"string\",\n  \"longitude\": \"string\"\n}"
+                      "body": "{\n  \"name\": \"Brazil\",\n  \"iso2\": \"BR\",\n  \"latitude\": \"-10.00000000\",\n  \"longitude\": \"-55.00000000\"\n}"
                     },
                     {
                       "name": "Código de país informado em branco ou inválido",
@@ -2248,7 +2396,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "[\n  \"BR - Brazil\",\n  \"BR - Brazil\"\n]"
+                  "body": "[\n  \"AF - Afghanistan\",\n  \"AL - Albania\",\n  \"BR - Brazil\",\n  \"CA - Canada\",\n  \"FR - France\",\n  \"JP - Japan\",\n  \"US - United States\"\n]"
                 },
                 {
                   "name": "Erro ao comunicar-se com a API externa de geolocalização",

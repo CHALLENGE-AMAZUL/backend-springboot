@@ -40,13 +40,13 @@ examples:
         - name: Content-Type
           value: application/json
       body:
-        type: json
+        type: text
         data: |-
           {
             "name": "Brazil",
             "iso2": "BR",
-            "latitude": -10,
-            "longitude": -55
+            "latitude": "-10.00000000",
+            "longitude": "-55.00000000"
           }
   - name: 400 Response
     description: Código de país informado em branco ou inválido
@@ -55,7 +55,7 @@ examples:
       method: GET
       params:
         - name: codigoPais
-          value: BR
+          value: " "
           type: path
           description: Código ISO-2 do país (2 caracteres)
     response:
@@ -65,18 +65,18 @@ examples:
         - name: Content-Type
           value: application/json
       body:
-        type: json
+        type: text
         data: |-
           {
-            "erro": "Erro de validação dos campos da requisição.",
+            "erro": "Bad Request",
             "status": 400,
             "campos": [
               {
-                "campo": "titulo",
-                "mensagem": "O título deve possuir entre 5 e 100 caracteres."
+                "campo": "Validação",
+                "mensagem": "não deve estar em branco"
               }
             ],
-            "timestamp": "2026-10-21T01:30:00"
+            "timestamp": "2026-10-26T22:00:00"
           }
   - name: 500 Response
     description: Falha ao obter dados do país junto à API externa
@@ -85,7 +85,7 @@ examples:
       method: GET
       params:
         - name: codigoPais
-          value: BR
+          value: ZZ
           type: path
           description: Código ISO-2 do país (2 caracteres)
     response:
@@ -95,13 +95,13 @@ examples:
         - name: Content-Type
           value: application/json
       body:
-        type: json
+        type: text
         data: |-
           {
-            "mensagem": "Artigo de id (999) não encontrado!",
-            "erro": "Not Found",
-            "status": 404,
-            "timestamp": "2026-10-21T01:30:00"
+            "mensagem": "Erro interno inesperado.",
+            "erro": "Internal Server Error",
+            "status": 500,
+            "timestamp": "2026-10-26T22:00:00"
           }
 
 docs: Retorna nome oficial, código ISO-2, latitude e longitude a partir da integração com a API Country State City.

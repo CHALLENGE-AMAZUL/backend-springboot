@@ -1,7 +1,7 @@
 info:
   name: Atualizar local existente
   type: http
-  seq: 2
+  seq: 4
   tags:
     - Local
 
@@ -10,13 +10,13 @@ http:
   url: "{{baseUrl}}/api/locais/:id"
   params:
     - name: id
-      value: ""
+      value: "1"
       type: path
   body:
     type: json
     data: |-
       {
-        "nome": "Complexo radiológico de Iperó/Aramar (CTMSP)",
+        "nome": "Complexo radiológico de Iperó/Aramar (CTMSP - Atualizado)",
         "codigoPais": "BR"
       }
   auth: inherit
@@ -30,19 +30,19 @@ settings:
 
 examples:
   - name: 200 Response
-    description: OK
+    description: Local atualizado com sucesso
     request:
       url: "{{baseUrl}}/api/locais/:id"
       method: PUT
       params:
         - name: id
-          value: ""
+          value: "1"
           type: path
       body:
         type: json
         data: |-
           {
-            "nome": "Complexo radiológico de Iperó/Aramar (CTMSP)",
+            "nome": "Complexo radiológico de Iperó/Aramar (CTMSP - Atualizado)",
             "codigoPais": "BR"
           }
     response:
@@ -50,16 +50,42 @@ examples:
       statusText: OK
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
       body:
         type: text
         data: |-
           {
-            "id": 0,
-            "nome": "",
-            "cidade": "",
-            "nomePais": "",
-            "codigoPais": "",
-            "latitude": "",
-            "longitude": ""
+            "id": 1,
+            "nome": "Complexo radiológico de Iperó/Aramar (CTMSP - Atualizado)",
+            "cidade": null,
+            "nomePais": "Brazil",
+            "codigoPais": "BR",
+            "latitude": "-10.00000000",
+            "longitude": "-55.00000000"
           }
+  - name: 404 Response
+    description: Local não encontrado para o ID informado
+    request:
+      url: "{{baseUrl}}/api/locais/:id"
+      method: PUT
+      params:
+        - name: id
+          value: "999"
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: text
+        data: |-
+          {
+            "mensagem": "Local de id (999) não encontrado!",
+            "erro": "Not Found",
+            "status": 404,
+            "timestamp": "2026-10-26T22:00:00"
+          }
+
+docs: Atualiza o nome e/ou o código de país de um local existente, atualizando coordenadas geográficas associadas.

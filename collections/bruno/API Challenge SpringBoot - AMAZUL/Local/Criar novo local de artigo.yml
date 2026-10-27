@@ -1,7 +1,7 @@
 info:
   name: Criar novo local de artigo
   type: http
-  seq: 5
+  seq: 3
   tags:
     - Local
 
@@ -42,17 +42,56 @@ examples:
       statusText: Created
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
+        - name: Location
+          value: /api/locais/1
       body:
         type: text
         data: |-
           {
-            "conteudo": [
-              {}
-            ],
-            "pagina": 0,
-            "tamanho": 10,
-            "totalElementos": 42,
-            "totalPaginas": 5,
-            "ultimo": false
+            "id": 1,
+            "nome": "Complexo radiológico de Iperó/Aramar (CTMSP)",
+            "cidade": null,
+            "nomePais": "Brazil",
+            "codigoPais": "BR",
+            "latitude": "-10.00000000",
+            "longitude": "-55.00000000"
           }
+  - name: 400 Response
+    description: Dados inválidos no cadastro de local
+    request:
+      url: "{{baseUrl}}/api/locais"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "nome": "",
+            "codigoPais": "brasil"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: text
+        data: |-
+          {
+            "erro": "Bad Request",
+            "status": 400,
+            "campos": [
+              {
+                "campo": "nome",
+                "mensagem": "O nome do local não pode ser vazio"
+              },
+              {
+                "campo": "codigoPais",
+                "mensagem": "O código do país deve seguir o padrão ISO-2 com 2 letras maiúsculas (ex: BR, US)"
+              }
+            ],
+            "timestamp": "2026-10-26T22:00:00"
+          }
+
+docs: Cadastra uma nova instalação, complexo ou laboratório de tecnologia nuclear, enriquecendo automaticamente as coordenadas geográficas via API de países se o código ISO-2 for fornecido.

@@ -1,7 +1,7 @@
 info:
   name: Lista todas as fontes com paginação
   type: http
-  seq: 4
+  seq: 1
   tags:
     - Fonte
 
@@ -42,19 +42,27 @@ examples:
       statusText: OK
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
       body:
         type: text
         data: |-
           {
             "conteudo": [
-              {}
+              {
+                "id": 1,
+                "titulo": "Programa Nuclear da Marinha - CTMSP",
+                "url": "https://www.marinha.mil.br/ctmsp/programa-nuclear",
+                "artigos": [
+                  "Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico"
+                ],
+                "atualizadoEm": "2026-10-26T22:00:00.000Z"
+              }
             ],
             "pagina": 0,
             "tamanho": 10,
-            "totalElementos": 42,
-            "totalPaginas": 5,
-            "ultimo": false
+            "totalElementos": 1,
+            "totalPaginas": 1,
+            "ultimo": true
           }
   - name: 400 Response
     description: Parâmetros de paginação inválidos
@@ -63,52 +71,22 @@ examples:
       method: GET
       params:
         - name: pagina
-          value: "0"
-          type: query
-        - name: tamanho
-          value: "10"
+          value: "invalido"
           type: query
     response:
       status: 400
       statusText: Bad Request
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
       body:
         type: text
         data: |-
           {
-            "mensagem": "Artigo de id (999) não encontrado!",
-            "erro": "Not Found",
-            "status": 404,
-            "timestamp": "2026-10-21T01:30:00"
-          }
-  - name: 500 Response
-    description: Erro interno no servidor
-    request:
-      url: "{{baseUrl}}/api/fontes"
-      method: GET
-      params:
-        - name: pagina
-          value: "0"
-          type: query
-        - name: tamanho
-          value: "10"
-          type: query
-    response:
-      status: 500
-      statusText: Internal Server Error
-      headers:
-        - name: Content-Type
-          value: "*/*"
-      body:
-        type: text
-        data: |-
-          {
-            "mensagem": "Artigo de id (999) não encontrado!",
-            "erro": "Not Found",
-            "status": 404,
-            "timestamp": "2026-10-21T01:30:00"
+            "mensagem": "Parâmetro: (pagina) inválido!",
+            "erro": "Bad Request",
+            "status": 400,
+            "timestamp": "2026-10-26T22:00:00"
           }
 
 docs: Retorna uma página de fontes de referência cadastradas, indicando os títulos dos artigos vinculados a cada uma.

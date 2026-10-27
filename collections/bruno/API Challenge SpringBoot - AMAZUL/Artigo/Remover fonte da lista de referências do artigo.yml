@@ -1,0 +1,74 @@
+info:
+  name: Remover fonte da lista de referências do artigo
+  type: http
+  seq: 6
+  tags:
+    - Artigo
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/api/artigos/:id/fontes/:fonteId"
+  params:
+    - name: id
+      value: "1"
+      type: path
+    - name: fonteId
+      value: "1"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 204 Response
+    description: Remoção de fonte do artigo concluída com sucesso
+    request:
+      url: "{{baseUrl}}/api/artigos/:id/fontes/:fonteId"
+      method: DELETE
+      params:
+        - name: id
+          value: "1"
+          type: path
+        - name: fonteId
+          value: "1"
+          type: path
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: 404 Response
+    description: Artigo não encontrado para o ID informado
+    request:
+      url: "{{baseUrl}}/api/artigos/:id/fontes/:fonteId"
+      method: DELETE
+      params:
+        - name: id
+          value: "999"
+          type: path
+        - name: fonteId
+          value: "1"
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: text
+        data: |-
+          {
+            "mensagem": "Artigo de id (999) não encontrado!",
+            "erro": "Not Found",
+            "status": 404,
+            "timestamp": "2026-10-26T22:00:00"
+          }
+
+docs: Desassocia uma fonte científica da lista de referências bibliográficas do artigo.

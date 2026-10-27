@@ -1,7 +1,7 @@
 info:
   name: Alterar status de artigo
   type: http
-  seq: 4
+  seq: 9
   tags:
     - Artigo
 
@@ -10,13 +10,13 @@ http:
   url: "{{baseUrl}}/api/artigos/alterarStatus/:id"
   params:
     - name: id
-      value: ""
+      value: "1"
       type: path
     - name: status
-      value: RASCUNHO
+      value: PUBLICADO
       type: query
     - name: status
-      value: PUBLICADO
+      value: RASCUNHO
       type: query
       disabled: true
     - name: status
@@ -36,39 +36,65 @@ examples:
   - name: 200 Response
     description: Status de artigo atualizado com sucesso
     request:
-      url: "{{baseUrl}}/api/artigos/alterarStatus/:id"
+      url: "{{baseUrl}}/api/artigos/alterarStatus/:id?status=PUBLICADO"
       method: PUT
       params:
         - name: id
-          value: ""
+          value: "1"
           type: path
-        - name: status
-          value: RASCUNHO
-          type: query
         - name: status
           value: PUBLICADO
           type: query
-          disabled: true
-        - name: status
-          value: ARQUIVADO
-          type: query
-          disabled: true
     response:
       status: 200
       statusText: OK
       headers:
         - name: Content-Type
-          value: "*/*"
+          value: application/json
       body:
         type: text
         data: |-
           {
-            "conteudo": [
-              {}
+            "id": 1,
+            "areaAplicacao": "SAUDE",
+            "titulo": "Produção de Radiofármacos para Diagnóstico e Tratamento Oncológico",
+            "resumo": "Visão geral sobre o papel dos reatores de pesquisa na geração de radioisótopos essenciais para a medicina moderna.",
+            "aplicacaoReal": "Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.",
+            "impactoSociedade": "Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.",
+            "nomeLocal": "Complexo radiológico de Iperó/Aramar (CTMSP)",
+            "paisLocal": "Brazil",
+            "status": "PUBLICADO",
+            "referencias": [
+              "https://www.marinha.mil.br/ctmsp/programa-nuclear"
             ],
-            "pagina": 0,
-            "tamanho": 10,
-            "totalElementos": 42,
-            "totalPaginas": 5,
-            "ultimo": false
+            "atualizadoEm": "2026-10-26T22:00:00.000Z"
           }
+  - name: 422 Response
+    description: Transição inválida de status do artigo
+    request:
+      url: "{{baseUrl}}/api/artigos/alterarStatus/:id?status=RASCUNHO"
+      method: PUT
+      params:
+        - name: id
+          value: "1"
+          type: path
+        - name: status
+          value: RASCUNHO
+          type: query
+    response:
+      status: 422
+      statusText: Unprocessable Content
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: text
+        data: |-
+          {
+            "mensagem": "Esse artigo não pode ser alterado para: RASCUNHO",
+            "erro": "Unprocessable Content",
+            "status": 422,
+            "timestamp": "2026-10-26T22:00:00"
+          }
+
+docs: Altera o ciclo de vida do artigo (RASCUNHO -> PUBLICADO -> ARQUIVADO). Dispara HTTP 422 caso a transição solicitada seja ilegal.
