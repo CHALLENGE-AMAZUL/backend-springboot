@@ -20,7 +20,7 @@ public class Local {
 
     private String nome;
 
-    private String cidade;
+//    private String cidade;
 
     private String nomePais;
     private String codigoPais;
