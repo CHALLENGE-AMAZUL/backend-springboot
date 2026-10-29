@@ -161,7 +161,7 @@ public class ArtigoController {
             )
     })
     public PageResponse<ArtigoResponse> exibirPorPais(
-            @Parameter(description = "País de busca dos artigos", example = "Radiofármacos", required = true)
+            @Parameter(description = "País de busca dos artigos", example = "Brazil", required = true)
             @RequestParam() String pais,
 
             @Parameter(description = "Número da página (base 0)", example = "0")
