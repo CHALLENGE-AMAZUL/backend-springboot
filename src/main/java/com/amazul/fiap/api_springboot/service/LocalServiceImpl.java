@@ -47,7 +47,7 @@ public class LocalServiceImpl implements LocalService{
             }
 
             local.setCodigoPais(codigoIso2.toUpperCase());
-            local.setNomePais(pais.nomePais());
+            local.setPais(pais.nomePais());
             local.setLatitude(pais.latitude());
             local.setLongitude(pais.longitude());
         }

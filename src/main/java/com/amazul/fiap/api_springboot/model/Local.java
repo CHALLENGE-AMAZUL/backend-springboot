@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +21,7 @@ public class Local {
 
 //    private String cidade;
 
-    private String nomePais;
+    private String pais;
     private String codigoPais;
     private String latitude;
     private String longitude;

@@ -209,7 +209,7 @@ curl -X GET "http://localhost:8080/api/paises/BR"
 ```
 
 ### Passo 2: Cadastrar uma Instalação Nuclear (`POST /api/locais`)
-Ao informar `codigoPais: "BR"`, a aplicação consulta automaticamente a API externa e preenche `nomePais`, `latitude` e `longitude`:
+Ao informar `codigoPais: "BR"`, a aplicação consulta automaticamente a API externa e preenche `pais`, `latitude` e `longitude`:
 ```bash
 curl -X POST "http://localhost:8080/api/locais" \
   -H "Content-Type: application/json" \
