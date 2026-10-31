@@ -15,7 +15,12 @@ public class RestClientConfig {
 
     @Bean
     public RestClient countryStateRestClient(){
+        var factory = new org.springframework.http.client.JdkClientHttpRequestFactory(
+                java.net.http.HttpClient.newBuilder().connectTimeout(java.time.Duration.ofSeconds(5)).build());
+        factory.setReadTimeout(java.time.Duration.ofSeconds(10));
         return RestClient.builder()
+                .baseUrl(apiCountryBaseUrl)
+                .requestFactory(factory)
                 .defaultHeader("X-CSCAPI-KEY", apiCountryKey)
                 .defaultHeader("Accept", "application/json")
                 .build();

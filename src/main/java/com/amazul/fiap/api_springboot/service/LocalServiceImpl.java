@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+@org.springframework.transaction.annotation.Transactional
 @Service
 public class LocalServiceImpl implements LocalService{
     private final LocalRepository repository;
@@ -69,6 +70,7 @@ public class LocalServiceImpl implements LocalService{
             if(pais == null){
                 return null;
             }
+            local.setPais(pais.nomePais());
             local.setLatitude(pais.latitude());
             local.setLongitude(pais.longitude());
         }

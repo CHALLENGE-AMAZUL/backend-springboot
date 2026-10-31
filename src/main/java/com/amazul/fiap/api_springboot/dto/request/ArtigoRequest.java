@@ -34,16 +34,18 @@ public record ArtigoRequest(
 
         @Schema(description = "Exemplo prático e científico da tecnologia nuclear em operação",
                 example = "Uso do radioisótopo Tecnécio-99m (Tc-99m) produzido pelo IPEN/CNEN em procedimentos de cintilografia para mapeamento de órgãos vitais.",
-                maxLength = 150,
+                maxLength = 2000,
                 requiredMode = Schema.RequiredMode.REQUIRED
         )
         @NotBlank(message = "Aplicação real deve ser detalhada!")
+        @Size(max = 2000)
         String aplicacaoReal,
 
         @Schema(description = "Impactos diretos, benefícios e contribuição para a população e sociedade civil",
                 example = "Possibilita diagnósticos precoces de tumores e doenças cardíacas no SUS, beneficiando milhões de pacientes anualmente com tratamentos não invasivos.",
                 requiredMode = Schema.RequiredMode.REQUIRED)
         @NotBlank(message = "Impacto na sociedade deve ser preenchido!")
+        @Size(max = 2000)
         String impactoSociedade,
 
         @Schema(description = "Área/Setor de aplicação da tecnologia nuclear",

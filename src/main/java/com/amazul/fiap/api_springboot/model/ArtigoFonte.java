@@ -25,6 +25,7 @@ public class ArtigoFonte {
     @JoinColumn(name = "fonte_id")
     private Fonte fonte;
 
+    @Column(length = 500)
     private String observacao;
 
 }

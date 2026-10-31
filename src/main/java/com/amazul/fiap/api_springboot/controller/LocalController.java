@@ -15,12 +15,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("/api/locais")
@@ -56,9 +59,9 @@ public class LocalController {
     })
     public PageResponse<LocalResponse> listar(
             @Parameter(description = "Número da página (base 0)", example = "0")
-            @RequestParam(required = false, defaultValue = "0") Integer pagina,
+            @RequestParam(required = false, defaultValue = "0") @Min(0) Integer pagina,
             @Parameter(description = "Quantidade de registros por página", example = "10")
-            @RequestParam(required = false, defaultValue = "10") Integer tamanho){
+            @RequestParam(required = false, defaultValue = "10") @Min(1) @Max(100) Integer tamanho){
         return PageResponse.from(localService.listarTodos(pagina, tamanho));
     }
 
@@ -95,6 +98,7 @@ public class LocalController {
         return ResponseEntity.ok(LocalMapper.toResponse(localService.findById(id)));
     }
 
+    @SecurityRequirement(name = "basicAuth")
     @PostMapping
     @Operation(
             summary = "Criar novo local de artigo",
@@ -122,6 +126,7 @@ public class LocalController {
         return ResponseEntity.created(URI.create("/api/locais/" + local.id())).body(local);
     }
 
+    @SecurityRequirement(name = "basicAuth")
     @PutMapping("/{id}")
     @Operation(
             summary = "Atualizar local existente",
@@ -156,6 +161,7 @@ public class LocalController {
         return ResponseEntity.ok(localService.atualizar(id, request));
     }
 
+    @SecurityRequirement(name = "basicAuth")
     @DeleteMapping("/{id}")
     @Operation(
             summary = "Deletar local existente",

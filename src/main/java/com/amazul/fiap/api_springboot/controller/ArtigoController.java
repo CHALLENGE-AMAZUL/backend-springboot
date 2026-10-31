@@ -17,12 +17,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("/api/artigos")
@@ -61,10 +64,10 @@ public class ArtigoController {
     })
     public PageResponse<ArtigoResponse> listar(
             @Parameter(description = "Número da página (base 0)", example = "0")
-            @RequestParam(required = false, defaultValue = "0") Integer pagina,
+            @RequestParam(required = false, defaultValue = "0") @Min(0) Integer pagina,
 
             @Parameter(description = "Quantidade de artigos por página", example = "10")
-            @RequestParam(required = false, defaultValue = "10") Integer tamanho){
+            @RequestParam(required = false, defaultValue = "10") @Min(1) @Max(100) Integer tamanho){
         return PageResponse.from(artigoService.listarTodos(pagina, tamanho));
     }
 
@@ -131,10 +134,10 @@ public class ArtigoController {
             @RequestParam() String titulo,
 
             @Parameter(description = "Número da página (base 0)", example = "0")
-            @RequestParam(required = false, defaultValue = "0") Integer pagina,
+            @RequestParam(required = false, defaultValue = "0") @Min(0) Integer pagina,
 
             @Parameter(description = "Quantidade de registros por página", example = "10")
-            @RequestParam(required = false, defaultValue = "10") Integer tamanho){
+            @RequestParam(required = false, defaultValue = "10") @Min(1) @Max(100) Integer tamanho){
         return PageResponse.from(artigoService.buscarPorTitulo(titulo, pagina, tamanho));
     }
 
@@ -165,13 +168,14 @@ public class ArtigoController {
             @RequestParam() String pais,
 
             @Parameter(description = "Número da página (base 0)", example = "0")
-            @RequestParam(required = false, defaultValue = "0") Integer pagina,
+            @RequestParam(required = false, defaultValue = "0") @Min(0) Integer pagina,
 
             @Parameter(description = "Quantidade de registros por página", example = "10")
-            @RequestParam(required = false, defaultValue = "10") Integer tamanho){
-        return PageResponse.from(artigoService.buscarPorTitulo(pais, pagina, tamanho));
+            @RequestParam(required = false, defaultValue = "10") @Min(1) @Max(100) Integer tamanho){
+        return PageResponse.from(artigoService.buscarPorPais(pais, pagina, tamanho));
     }
 
+    @SecurityRequirement(name = "basicAuth")
     @PostMapping
     @Operation(
             summary = "Criar novo artigo",
@@ -199,6 +203,7 @@ public class ArtigoController {
         return ResponseEntity.created(URI.create("/api/artigos/" + artigo.id())).body(artigo);
     }
 
+    @SecurityRequirement(name = "basicAuth")
     @PostMapping("/{id}/fontes")
     @Operation(
             summary = "Adicionar fonte à lista de referências do artigo",
@@ -234,6 +239,7 @@ public class ArtigoController {
         return ResponseEntity.ok(artigoService.associarFonteAoArtigo(id, request));
     }
 
+    @SecurityRequirement(name = "basicAuth")
     @DeleteMapping("/{id}/fontes/{fonteId}")
     @Operation(
             summary = "Remover fonte da lista de referências do artigo",
@@ -267,6 +273,7 @@ public class ArtigoController {
         return ResponseEntity.noContent().build();
     }
 
+    @SecurityRequirement(name = "basicAuth")
     @PostMapping("/{id}/locais/{localId}")
     @Operation(
             summary = "Inserir ou atualizar local do artigo",
@@ -303,6 +310,7 @@ public class ArtigoController {
         return ResponseEntity.ok(artigoService.inserirOuAtualizarLocal(id, localId));
     }
 
+    @SecurityRequirement(name = "basicAuth")
     @PutMapping("/{id}")
     @Operation(
             summary = "Atualizar artigo existente",
@@ -337,6 +345,7 @@ public class ArtigoController {
         return ResponseEntity.ok(artigoService.atualizar(id, request));
     }
 
+    @SecurityRequirement(name = "basicAuth")
     @PutMapping("/alterarStatus/{id}")
     @Operation(
             summary = "Alterar status de artigo",
@@ -378,6 +387,7 @@ public class ArtigoController {
         return ResponseEntity.ok(artigoService.mudarStatus(id, status));
     }
 
+    @SecurityRequirement(name = "basicAuth")
     @DeleteMapping("/{id}")
     @Operation(
             summary = "Deletar artigo existente",

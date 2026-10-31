@@ -12,21 +12,30 @@ import java.util.List;
 @Component
 public class CountryStateCityClient {
     private final RestClient restClient;
+    @org.springframework.beans.factory.annotation.Value("${api.country.key:}")
+    private String apiKey;
+
+    private void exigirChave() {
+        if (apiKey.isBlank()) throw new org.springframework.web.server.ResponseStatusException(
+                org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE, "Integração de países não configurada.");
+    }
 
     public CountryStateCityClient(RestClient countryStateRestClient) {
         this.restClient = countryStateRestClient;
     }
 
     public List<PaisCodigoResponse> listarPaises(){
+        exigirChave();
         return restClient.get()
-                .uri("https://api.countrystatecity.in/v1/countries")
+                .uri("/countries")
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {});
     }
 
     public PaisDetalhesResponse buscarPais(String codigoPais){
+        exigirChave();
         return restClient.get()
-                .uri("https://api.countrystatecity.in/v1/countries/{codigoPais}", codigoPais.toUpperCase())
+                .uri("/countries/{codigoPais}", codigoPais.toUpperCase())
                 .retrieve()
                 .body(PaisDetalhesResponse.class);
     }

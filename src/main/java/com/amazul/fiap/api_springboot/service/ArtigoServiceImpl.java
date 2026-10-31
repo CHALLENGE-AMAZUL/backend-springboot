@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.Date;
 
+@org.springframework.transaction.annotation.Transactional
 @Service
 public class ArtigoServiceImpl implements ArtigoService{
     private final ArtigoRepository repository;
@@ -46,7 +47,7 @@ public class ArtigoServiceImpl implements ArtigoService{
     @Override
     public Page<ArtigoResponse> buscarPorPais(String pais, Integer pagina, Integer tamanho) {
         Pageable pageable = Pageable.ofSize(tamanho).withPage(pagina);
-        return repository.findByTituloContainingIgnoreCase(pais, pageable).map(ArtigoMapper::toResponse);
+        return repository.findByLocal_PaisIgnoreCase(pais, pageable).map(ArtigoMapper::toResponse);
     }
 
     public ArtigoResponse criar(ArtigoRequest request){
@@ -71,6 +72,7 @@ public class ArtigoServiceImpl implements ArtigoService{
     @Override
     public ArtigoResponse atualizar(Long id, ArtigoRequest request) {
         Artigo artigo = findById(id);
+        artigo.setAreaAplicacao(request.area());
 
         if(request.titulo() != null && !request.titulo().isBlank()){
             artigo.setTitulo(request.titulo());
