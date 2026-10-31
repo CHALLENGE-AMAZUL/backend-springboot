@@ -1850,7 +1850,7 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/api/artigos/buscaPorTitulo?titulo=Radiofármacos&pagina=0&tamanho=10",
+                      "raw": "{{baseUrl}}/api/artigos/buscaPorTitulo?titulo=string&pagina=0&tamanho=10",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -1887,7 +1887,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/artigos/buscaPorTitulo?titulo=Radiofármacos&pagina=0&tamanho=10",
+                          "raw": "{{baseUrl}}/api/artigos/buscaPorTitulo?titulo=string&pagina=0&tamanho=10",
                           "host": [
                             "{{baseUrl}}"
                           ],

@@ -22,5 +22,5 @@ spring:
       accept-case-insensitive-enums: true
 api:
   country:
-    base-url: https://api.countrystatecity.in/v1
-    key: ${API_COUNTRY_KEY}
+    base-url: ${API_COUNTRY_BASE_URL:https://api.countrystatecity.in/v1}
+    key: ${API_COUNTRY_KEY:}

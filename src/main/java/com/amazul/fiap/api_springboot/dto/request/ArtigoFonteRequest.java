@@ -17,6 +17,7 @@ public record ArtigoFonteRequest(
                 description = "Observação complementar",
                 example = "Capítulo 4, Tabela 2 - Decaimento do Mo-99"
         )
+        @jakarta.validation.constraints.Size(max = 500)
         String observacao
 ) {
 }

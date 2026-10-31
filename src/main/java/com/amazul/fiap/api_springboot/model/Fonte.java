@@ -21,10 +21,11 @@ public class Fonte {
     private Long id;
 
     @NotBlank(message = "Título não pode ser vazio!")
+    @Column(length = 150, nullable = false)
     private String titulo;
 
     @NotBlank(message = "URL deve ser inserida.")
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 500)
     private String url;
 
     @OneToMany(mappedBy = "fonte")

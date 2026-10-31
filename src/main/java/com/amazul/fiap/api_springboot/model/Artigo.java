@@ -23,10 +23,14 @@ public class Artigo {
     @Enumerated(EnumType.STRING)
     private AreaAplicacao areaAplicacao;
 
+    @Column(length = 150, nullable = false)
     private String titulo;
+    @Column(length = 500, nullable = false)
     private String resumo;
 
+    @Column(length = 2000, nullable = false)
     private String aplicacaoReal;
+    @Column(length = 2000, nullable = false)
     private String impactoSociedade;
     //Antigo 'corpo' era @Lob
     //Pensando em desmembrar corpo em Problema, AplicacaoReal - no cotidiano, sociedade, e beneficio.

@@ -14,6 +14,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Date;
 
+@org.springframework.transaction.annotation.Transactional
 @Service
 public class FonteServiceImpl implements FonteService {
     private final FonteRepository repository;

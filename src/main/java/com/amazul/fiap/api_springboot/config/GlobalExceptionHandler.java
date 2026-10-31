@@ -87,6 +87,31 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(bodyErros);
     }
 
+    @ExceptionHandler(org.springframework.http.converter.HttpMessageNotReadableException.class)
+    public ResponseEntity<ErrorResponse> handlerJsonInvalido(Exception ex) {
+        return buildError(HttpStatus.BAD_REQUEST, "JSON inválido ou campo com tipo incorreto.");
+    }
+
+    @ExceptionHandler(org.springframework.web.bind.MissingServletRequestParameterException.class)
+    public ResponseEntity<ErrorResponse> handlerParametroAusente(Exception ex) {
+        return buildError(HttpStatus.BAD_REQUEST, "Parâmetro obrigatório ausente.");
+    }
+
+    @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> handlerConflito(Exception ex) {
+        return buildError(HttpStatus.CONFLICT, "Registro duplicado ou vínculo impede a operação.");
+    }
+
+    @ExceptionHandler(org.springframework.web.server.ResponseStatusException.class)
+    public ResponseEntity<ErrorResponse> handlerStatus(org.springframework.web.server.ResponseStatusException ex) {
+        return buildError(HttpStatus.valueOf(ex.getStatusCode().value()), ex.getReason());
+    }
+
+    @ExceptionHandler(org.springframework.web.client.RestClientException.class)
+    public ResponseEntity<ErrorResponse> handlerIntegracao(Exception ex) {
+        return buildError(HttpStatus.BAD_GATEWAY, "Não foi possível consultar o serviço de países.");
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handlerGenerico(Exception ex){
         return buildError(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno inesperado.");

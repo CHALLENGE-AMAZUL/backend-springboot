@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: ${ORACLE_URL}
+    username: ${ORACLE_USUARIO}
+    password: ${ORACLE_SENHA}
+    driver-class-name: oracle.jdbc.OracleDriver
+  h2:
+    console:
+      enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: validate

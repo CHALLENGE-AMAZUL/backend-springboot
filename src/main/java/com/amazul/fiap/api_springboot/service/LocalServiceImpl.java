@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+@org.springframework.transaction.annotation.Transactional
 @Service
 public class LocalServiceImpl implements LocalService{
     private final LocalRepository repository;

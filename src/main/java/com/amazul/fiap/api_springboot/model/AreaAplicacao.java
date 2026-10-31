@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Setores de atuação e áreas com benefícios da tecnologia nuclear")
 public enum AreaAplicacao {
-    @Schema(description = "Geração de usina com fusão nuclear e propulsão naval")
+    @Schema(description = "Geração de usina com fissão nuclear e propulsão naval")
     ENERGIA,
 
     @Schema(description = "Medicina nuclear, radioterapia e radiofármacos")
