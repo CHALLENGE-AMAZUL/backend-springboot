@@ -26,14 +26,15 @@ A energia e a tecnologia nuclear frequentemente enfrentam estigmas públicos ass
 
 ---
 
-## 🏛️ Arquitetura e Tecnologias Utilizadas
+## 🏛️ Arquitetura, Modelagem (3FN/BCNF) e Tecnologias Utilizadas
 
 - **Linguagem & Framework:** Java 21 LTS + Spring Boot 4.1.1
-- **Persistência:** Spring Data JPA / Hibernate + Bean Validation (`Jakarta Validation`)
+- **Persistência & Modelagem Relacional:** Spring Data JPA / Hibernate + Bean Validation (`Jakarta Validation`) com normalização em **3ª Forma Normal / BCNF** (entidade `Pais` desacoplada de `Local` via relacionamento `@ManyToOne`, evitando redundância de coordenadas e nomes de países).
+- **Diagrama de Classes UML (PlantUML):** Disponível em [`src/DiagramaChallenge.puml`](src/DiagramaChallenge.puml).
 - **Bancos de Dados Suportados:**
   - **H2 Database (Padrão):** Banco em memória para execução imediata e testes locais (`/h2-console`).
   - **Oracle Database:** Suporte via driver `ojdbc11` para instância Docker (`gvenzl/oracle-free`) ou servidor corporativo FIAP.
-- **Integração HTTP Externa:** Spring `RestClient` consumindo a API `countrystatecity.in` para enriquecimento automático de coordenadas geográficas (`latitude`, `longitude` e nome oficial do país via código ISO-2).
+- **Integração HTTP Externa:** Spring `RestClient` consumindo a API `countrystatecity.in` para enriquecimento e persistência automática de países (`nome`, `codigoPais`, `latitude`, `longitude` via código ISO-2).
 - **Tratamento Global de Erros:** `@RestControllerAdvice` (`GlobalExceptionHandler`) padronizando respostas HTTP `400`, `404`, `422` e `500`.
 - **Documentação Interativa:** SpringDoc OpenAPI 3 (`2.8.5`) com Swagger UI e Collections prontas para **Postman** e **Bruno**.
 
@@ -44,13 +45,13 @@ src/main/java/com/amazul/fiap/api_springboot/
 ├── config/                  # OpenApiConfig, RestClientConfig e GlobalExceptionHandler
 ├── controller/              # Camada REST (ArtigoController, FonteController, LocalController, PaisController)
 ├── dto/
-│   ├── request/             # Contratos imutáveis de entrada (Java Records + Bean Validation)
-│   ├── response/            # Contratos imutáveis de saída e paginação (PageResponse)
+│   ├── request/             # Contratos imutáveis de entrada (ArtigoRequest, LocalRequest, FonteRequest, ArtigoFonteRequest)
+│   ├── response/            # Contratos de saída (ArtigoResponse, LocalResponse, PaisResponse, ApiPaisResponse, FonteResponse, ArtigoFonteResponse, PageResponse)
 │   └── errors/              # Contratos padronizados de erro (ErrorResponse, ErrorValidation, FieldError)
 ├── exception/               # Exceções de domínio (ResourceNotFoundException, TransicaoInvalidaStatusException)
-├── mapper/                  # Conversores isolados Entidade <-> DTO
-├── model/                   # Entidades JPA (Artigo, Local, Fonte, ArtigoFonte) e Enums
-├── repository/              # Interfaces Spring Data JPA + Query Methods
+├── mapper/                  # Conversores isolados Entidade <-> DTO (ArtigoMapper, LocalMapper, PaisMapper, FonteMapper, ArtigoFonteMapper)
+├── model/                   # Entidades JPA (Artigo, Local, Pais, Fonte, ArtigoFonte) e Enums (AreaAplicacao, StatusArtigo)
+├── repository/              # Interfaces Spring Data JPA + Query Methods (ArtigoRepository, LocalRepository, PaisRepository, FonteRepository, ArtigoFonteRepository)
 └── service/                 # Regras de negócio e orquestração (Interfaces + Implementações)
 ```
 
@@ -104,9 +105,10 @@ A aplicação subirá na porta **`8080`** com o banco **H2 em memória** pronto 
 
 ## 🐳 Guia de Execução em Instância Docker (Para Colegas de Grupo e Deploy)
 
-Existem **duas formas** de rodar o projeto utilizando Docker:
-1. **Apenas a API em container** (usando banco H2 em memória).
-2. **Ambiente Completo com Docker Compose** (API Spring Boot + Banco Oracle XE/Free em containers).
+Existem **três formas** de rodar o projeto utilizando Docker:
+1. **Imagem OCI gerada pelo próprio Maven** (Cloud Native Buildpacks).
+2. **Build via `Dockerfile` Multi-Stage** (API Spring Boot em container).
+3. **Instância Oracle Database em container Docker** (`gvenzl/oracle-free`).
 
 ### Opção A: Gerar Imagem da API nativamente com Maven (Sem precisar de Dockerfile)
 O plugin do Spring Boot permite empacotar a aplicação diretamente em uma imagem OCI/Docker usando Cloud Native Buildpacks:
@@ -180,7 +182,7 @@ docker rm amazul-api
 
 ## 📦 Collections Prontas (Postman e Bruno)
 
-O repositório já inclui collections pré-configuradas com todos os **22 endpoints**, exemplos de payloads científicos reais e respostas documentadas:
+O repositório já inclui collections pré-configuradas com todos os **23 endpoints**, exemplos de payloads científicos reais e respostas documentadas:
 
 1. **Postman:**
    - Abra o Postman $\rightarrow$ clique em **Import**.
@@ -209,7 +211,7 @@ curl -X GET "http://localhost:8080/api/paises/BR"
 ```
 
 ### Passo 2: Cadastrar uma Instalação Nuclear (`POST /api/locais`)
-Ao informar `codigoPais: "BR"`, a aplicação consulta automaticamente a API externa e preenche `nomePais`, `latitude` e `longitude`:
+Ao informar `codigoPais: "BR"`, a aplicação verifica se o país já existe na tabela `tb_pais`; caso contrário, consulta automaticamente a API externa e persiste o `Pais` (`nome`, `codigoPais`, `latitude`, `longitude`) associando-o ao `Local`:
 ```bash
 curl -X POST "http://localhost:8080/api/locais" \
   -H "Content-Type: application/json" \
@@ -262,31 +264,35 @@ curl -X POST "http://localhost:8080/api/artigos/1/fontes" \
 ```
 
 ### Passo 6: Ciclo de Vida do Artigo (`PUT /api/artigos/alterarStatus/{id}`)
-O artigo segue uma máquina de estados controlada (`RASCUNHO` $\rightarrow$ `PUBLICADO` / `ARQUIVADO`). Uma vez `PUBLICADO` ou `ARQUIVADO`, tentativas de retorno para `RASCUNHO` disparam **`HTTP 422 Unprocessable Content`**:
+O artigo segue uma máquina de estados controlada (`RASCUNHO` $\rightarrow$ `PUBLICADO` / `ARQUIVADO`). Uma vez `PUBLICADO` ou `ARQUIVADO`, tentativas de alteração de status disparam **`HTTP 422 Unprocessable Content`**:
 ```bash
 # Publicar o artigo de ID 1
 curl -X PUT "http://localhost:8080/api/artigos/alterarStatus/1?status=PUBLICADO"
 ```
 
-### Passo 7: Consultas Paginadas e Pesquisa Textual
+### Passo 7: Consultas Paginadas, Pesquisa Textual por Título e Filtro por País
 ```bash
 # Listar artigos com paginação
 curl -X GET "http://localhost:8080/api/artigos?pagina=0&tamanho=10"
 
 # Buscar artigos por palavra-chave no título (IgnoreCase)
-curl -X GET "http://localhost:8080/api/artigos/busca?titulo=Radiofármacos&pagina=0&tamanho=10"
+curl -X GET "http://localhost:8080/api/artigos/buscaPorTitulo?titulo=Radiofármacos&pagina=0&tamanho=10"
+
+# Buscar artigos pelo nome do país em inglês associado ao local
+curl -X GET "http://localhost:8080/api/artigos/buscaPorPais?pais=Brazil&pagina=0&tamanho=10"
 ```
 
 ---
 
-## 📋 Catálogo Completo de Endpoints
+## 📋 Catálogo Completo de Endpoints (23 Operações)
 
 ### Módulo: Artigos (`/api/artigos`)
 | Método | Rota | Descrição | Status de Sucesso |
 | :---: | :--- | :--- | :---: |
 | `GET` | `/api/artigos` | Lista todos os artigos com paginação (`pagina`, `tamanho`) | `200 OK` |
 | `GET` | `/api/artigos/{id}` | Busca um artigo detalhado por ID | `200 OK` |
-| `GET` | `/api/artigos/busca` | Busca textual por título (`?titulo=...&pagina=0&tamanho=10`) | `200 OK` |
+| `GET` | `/api/artigos/buscaPorTitulo` | Busca textual parcial por título (`?titulo=...&pagina=0&tamanho=10`) | `200 OK` |
+| `GET` | `/api/artigos/buscaPorPais` | Busca artigos pelo nome do país em inglês (`?pais=Brazil&pagina=0&tamanho=10`) | `200 OK` |
 | `POST` | `/api/artigos` | Cria um novo artigo (inicia como `RASCUNHO`) | `201 Created` |
 | `PUT` | `/api/artigos/{id}` | Atualiza os dados de um artigo existente | `200 OK` |
 | `PUT` | `/api/artigos/alterarStatus/{id}` | Altera o status do artigo (`?status=PUBLICADO` ou `ARQUIVADO`) | `200 OK` |
@@ -309,7 +315,7 @@ curl -X GET "http://localhost:8080/api/artigos/busca?titulo=Radiofármacos&pagin
 | :---: | :--- | :--- | :---: |
 | `GET` | `/api/locais` | Lista todas as instalações e locais com paginação | `200 OK` |
 | `GET` | `/api/locais/{id}` | Busca detalhes e coordenadas de um local por ID | `200 OK` |
-| `POST` | `/api/locais` | Cadastra novo local (enriquece coordenadas via `codigoPais`) | `201 Created` |
+| `POST` | `/api/locais` | Cadastra novo local (enriquece e associa `Pais` via `codigoPais`) | `201 Created` |
 | `PUT` | `/api/locais/{id}` | Atualiza dados de um local existente | `200 OK` |
 | `DELETE` | `/api/locais/{id}` | Remove um local cadastrado | `204 No Content` |
 
@@ -317,7 +323,7 @@ curl -X GET "http://localhost:8080/api/artigos/busca?titulo=Radiofármacos&pagin
 | Método | Rota | Descrição | Status de Sucesso |
 | :---: | :--- | :--- | :---: |
 | `GET` | `/api/paises` | Lista países e códigos ISO-2 obtidos da API externa | `200 OK` |
-| `GET` | `/api/paises/{codigoPais}` | Retorna nome oficial, ISO-2, latitude e longitude do país | `200 OK` |
+| `GET` | `/api/paises/{codigoPais}` | Retorna nome oficial, ISO-2, latitude e longitude do país (`ApiPaisResponse`) | `200 OK` |
 
 ---
 
@@ -325,6 +331,6 @@ curl -X GET "http://localhost:8080/api/artigos/busca?titulo=Radiofármacos&pagin
 
 A API possui tratamento centralizado via [`GlobalExceptionHandler`](src/main/java/com/amazul/fiap/api_springboot/config/GlobalExceptionHandler.java):
 - **`400 Bad Request` (`ErrorValidation` / `ErrorResponse`):** Violação de Bean Validation (`@NotBlank`, `@Size`, `@URL`, `@Pattern`, `@Positive`) ou erro de tipo em parâmetros.
-- **`404 Not Found` (`ErrorResponse`):** Recurso (`Artigo`, `Fonte` ou `Local`) não encontrado para o ID informado.
+- **`404 Not Found` (`ErrorResponse`):** Recurso (`Artigo`, `Fonte`, `Local` ou `Pais`) não encontrado para o identificador informado.
 - **`422 Unprocessable Content` (`ErrorResponse`):** Violação de regra de domínio na transição de status do artigo (`TransicaoInvalidaStatusException`).
 - **`500 Internal Server Error` (`ErrorResponse`):** Falha inesperada tratada de forma segura sem expor *stacktrace* interno.

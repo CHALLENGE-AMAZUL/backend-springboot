@@ -3,7 +3,7 @@ package com.amazul.fiap.api_springboot.dto.response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "DTO contendo os detalhes geográficos do país")
+@Schema(description = "DTO contendo os detalhes geográficos do país que vem da API integrada")
 public record ApiPaisResponse(
         @Schema(description = "Nome oficial do país retornado pela API", example = "Brazil")
         @JsonProperty("name") String nomePais,

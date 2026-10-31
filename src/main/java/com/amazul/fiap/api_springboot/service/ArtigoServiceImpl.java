@@ -46,7 +46,7 @@ public class ArtigoServiceImpl implements ArtigoService{
     @Override
     public Page<ArtigoResponse> buscarPorPais(String pais, Integer pagina, Integer tamanho) {
         Pageable pageable = Pageable.ofSize(tamanho).withPage(pagina);
-        return repository.findByTituloContainingIgnoreCase(pais, pageable).map(ArtigoMapper::toResponse);
+        return repository.findByLocal_Pais_Nome(pais, pageable).map(ArtigoMapper::toResponse);
     }
 
     public ArtigoResponse criar(ArtigoRequest request){

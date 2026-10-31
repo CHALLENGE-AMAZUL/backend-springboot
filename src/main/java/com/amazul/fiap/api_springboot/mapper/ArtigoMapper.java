@@ -11,7 +11,8 @@ public final class ArtigoMapper {
     }
     public static ArtigoResponse toResponse(Artigo artigo){
         String nomeLocal = artigo.getLocal() != null ? artigo.getLocal().getNome() : null;
-        String paisLocal = artigo.getLocal() != null ? artigo.getLocal().getNomePais() : null;
+        String pais = (artigo.getLocal() != null && artigo.getLocal().getPais() != null)
+                ? artigo.getLocal().getPais().getNome() : null;
         String status = artigo.getStatus() != null ? artigo.getStatus().name() : null;
         String area = artigo.getAreaAplicacao() != null ? artigo.getAreaAplicacao().name() : null;
 
@@ -30,7 +31,7 @@ public final class ArtigoMapper {
                 artigo.getAplicacaoReal(),
                 artigo.getImpactoSociedade(),
                 nomeLocal,
-                paisLocal,
+                pais,
                 status,
                 referencias,
                 artigo.getAtualizadoEm()

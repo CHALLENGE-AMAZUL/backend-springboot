@@ -3,6 +3,7 @@ package com.amazul.fiap.api_springboot.service;
 import com.amazul.fiap.api_springboot.dto.request.LocalRequest;
 import com.amazul.fiap.api_springboot.dto.response.LocalResponse;
 import com.amazul.fiap.api_springboot.dto.response.ApiPaisResponse;
+import com.amazul.fiap.api_springboot.dto.response.PaisResponse;
 import com.amazul.fiap.api_springboot.exception.ResourceNotFoundException;
 import com.amazul.fiap.api_springboot.mapper.LocalMapper;
 import com.amazul.fiap.api_springboot.model.Local;
@@ -35,24 +36,21 @@ public class LocalServiceImpl implements LocalService{
     @Override
     public LocalResponse criar(LocalRequest request) {
         Local local = new Local();
+
+        local.setId(null);
+        local.setNome(request.nome());
+
         String codigoIso2 = request.codigoPais();
 
         if(codigoIso2 != null && !codigoIso2.isBlank()){
             Pais pais = paisService.findByCodigoPais(codigoIso2);
 
-            if(pais == null){
-                ApiPaisResponse novoPais = paisService.exibirPais(codigoIso2);
-
-                if(novoPais == null){
-                    return null;
-                }
+            if(pais == null) {
+                pais = paisService.criar(codigoIso2);
             }
 
-            local.setPais(pais);
-        }
-
-        local.setId(null);
-        local.setNome(request.nome());
+               local.setPais(pais);
+            }
 
         repository.save(local);
         return LocalMapper.toResponse(local);
@@ -69,12 +67,7 @@ public class LocalServiceImpl implements LocalService{
             Pais pais = paisService.findByCodigoPais(request.codigoPais());
 
             if(pais == null){
-                return null;
-            }
-            
-            ApiPaisResponse novoPais = paisService.exibirPais(request.codigoPais());
-            if(novoPais == null){
-                return null;
+                pais = paisService.criar(request.codigoPais());
             }
             local.setPais(pais);
         }

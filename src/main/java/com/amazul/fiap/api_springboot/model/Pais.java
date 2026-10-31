@@ -17,6 +17,7 @@ public class Pais {
 
     private String nome;
 
+    @Column(unique = true, nullable = false, length = 2)
     private String codigoPais;
 
     private String latitude;
