@@ -11,8 +11,12 @@ public final class LocalMapper {
     }
 
     public static LocalResponse toResponse(Local local){
-        return new LocalResponse(local.getId(), local.getNome(), local.getCidade(), local.getNomePais(), local.getCodigoPais(),
-                    local.getLatitude(), local.getLongitude());
+        return new LocalResponse(local.getId(),
+                local.getNome(),
+                local.getPais().getNome(),
+                local.getPais().getCodigoPais(),
+                local.getPais().getLatitude(),
+                local.getPais().getLongitude());
     }
 
     public static List<LocalResponse> toResponse(List<Local> locais){

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "DTO contendo os detalhes geográficos do país")
-public record PaisDetalhesResponse(
+public record ApiPaisResponse(
         @Schema(description = "Nome oficial do país retornado pela API", example = "Brazil")
         @JsonProperty("name") String nomePais,
 

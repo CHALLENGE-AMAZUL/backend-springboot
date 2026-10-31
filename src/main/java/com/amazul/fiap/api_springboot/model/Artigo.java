@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "artigo")
+@Table(name = "tb_artigo")
 public class Artigo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class Artigo {
     //Pensando em desmembrar corpo em Problema, AplicacaoReal - no cotidiano, sociedade, e beneficio.
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_LOCAL")
+    @JoinColumn(name = "id_local")
     private Local local;
 
     @Enumerated(EnumType.STRING)

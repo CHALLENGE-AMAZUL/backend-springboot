@@ -1,9 +1,6 @@
 package com.amazul.fiap.api_springboot.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "tb_local")
 public class Local {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +18,7 @@ public class Local {
 
     private String nome;
 
-//    private String cidade;
-
-    private String nomePais;
-    private String codigoPais;
-    private String latitude;
-    private String longitude;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pais")
+    private Pais pais;
 }
