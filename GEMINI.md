@@ -83,7 +83,7 @@ Instalação física, usina, reator experimental ou laboratório associado aos e
 | `id` | `ID_LOCAL` | `Long` | `NUMBER(19)` | **PK**, Sequence `SEQ_LOCAL` |
 | `nome` | `NM_LOCAL` | `String` | `VARCHAR2(120)` | NOT NULL (ex: "Centro Experimental Aramar") |
 | `cidade` | `NM_CIDADE` | `String` | `VARCHAR2(100)` | Opcional (ex: "Iperó") |
-| `pais` | `NM_PAIS` | `String` | `VARCHAR2(100)` | Preenchido via integração com API externa |
+| `nomePais` | `NM_PAIS` | `String` | `VARCHAR2(100)` | Preenchido via integração com API externa |
 | `codigoPais` | `CD_PAIS` | `String` | `CHAR(2)` / `VARCHAR2(2)` | ISO-2 (ex: "BR", "FR", "US") |
 | `latitude` | `NR_LATITUDE` | `String` / `Double` | `VARCHAR2(30)` | Coordenada geográfica formatada |
 | `longitude` | `NR_LONGITUDE` | `String` / `Double` | `VARCHAR2(30)` | Coordenada geográfica formatada |

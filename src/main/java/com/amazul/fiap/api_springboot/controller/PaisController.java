@@ -2,7 +2,7 @@ package com.amazul.fiap.api_springboot.controller;
 
 import com.amazul.fiap.api_springboot.dto.errors.ErrorResponse;
 import com.amazul.fiap.api_springboot.dto.errors.ErrorValidation;
-import com.amazul.fiap.api_springboot.dto.response.PaisDetalhesResponse;
+import com.amazul.fiap.api_springboot.dto.response.ApiPaisResponse;
 import com.amazul.fiap.api_springboot.service.PaisService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -57,7 +57,7 @@ public class PaisController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Detalhes geográficos do país retornados com êxito",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = PaisDetalhesResponse.class))
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiPaisResponse.class))
             ),
             @ApiResponse(
                     responseCode = "400",
@@ -70,7 +70,7 @@ public class PaisController {
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
             )
     })
-    public PaisDetalhesResponse exibePais(
+    public ApiPaisResponse exibePais(
             @Parameter(description = "Código ISO-2 do país (2 caracteres)", example = "BR", required = true)
             @PathVariable @NotBlank String codigoPais){
         return paisService.exibirPais(codigoPais);

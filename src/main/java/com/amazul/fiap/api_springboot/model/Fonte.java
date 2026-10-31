@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "fonte")
+@Table(name = "tb_fonte")
 public class Fonte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +33,4 @@ public class Fonte {
     private LocalDate dataConsulta;
 
     private Date atualizadoEm;
-
-    //Inserir dataConsulta
 }

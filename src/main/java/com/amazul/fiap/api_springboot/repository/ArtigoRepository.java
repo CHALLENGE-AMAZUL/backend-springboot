@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ArtigoRepository extends JpaRepository<Artigo, Long> {
     Page<Artigo> findByTituloContainingIgnoreCase(String titulo, Pageable pageable);
-    Page<Artigo> findByLocal_PaisIgnoreCase(String pais, Pageable pageable);
+    Page<Artigo> findByLocal_Pais_Nome(String nomePais, Pageable pageable);
 }

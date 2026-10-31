@@ -144,7 +144,7 @@ public class ArtigoController {
     @GetMapping("/buscaPorPais")
     @Operation(
             summary = "Lista todos os artigos que estiverem no país inserido (conforme a lista de países - inglês)",
-            description = "Pesquisa de artigos por país com suporte a paginação."
+            description = "Pesquisa de artigos filtrados pelo nome do país em inglês associado ao local do artigo com suporte a paginação."
     )
     @ApiResponses(value = {
             @ApiResponse(
@@ -164,7 +164,7 @@ public class ArtigoController {
             )
     })
     public PageResponse<ArtigoResponse> exibirPorPais(
-            @Parameter(description = "País de busca dos artigos", example = "Brazil", required = true)
+            @Parameter(description = "Nome do país em inglês para busca dos artigos (ex: Brazil, France, United States)", example = "Brazil", required = true)
             @RequestParam() String pais,
 
             @Parameter(description = "Número da página (base 0)", example = "0")

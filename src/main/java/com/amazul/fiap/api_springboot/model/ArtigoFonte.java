@@ -9,8 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "artigo_fonte", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"artigo_id", "fonte_id"})
+@Table(name = "tb_artigo_fonte",
+        uniqueConstraints = { @UniqueConstraint(columnNames = {"artigo_id", "fonte_id"})
 })
 public class ArtigoFonte {
     @Id

@@ -2,10 +2,12 @@ package com.amazul.fiap.api_springboot.service;
 
 import com.amazul.fiap.api_springboot.dto.request.LocalRequest;
 import com.amazul.fiap.api_springboot.dto.response.LocalResponse;
-import com.amazul.fiap.api_springboot.dto.response.PaisDetalhesResponse;
+import com.amazul.fiap.api_springboot.dto.response.ApiPaisResponse;
+import com.amazul.fiap.api_springboot.dto.response.PaisResponse;
 import com.amazul.fiap.api_springboot.exception.ResourceNotFoundException;
 import com.amazul.fiap.api_springboot.mapper.LocalMapper;
 import com.amazul.fiap.api_springboot.model.Local;
+import com.amazul.fiap.api_springboot.model.Pais;
 import com.amazul.fiap.api_springboot.repository.LocalRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,23 +37,21 @@ public class LocalServiceImpl implements LocalService{
     @Override
     public LocalResponse criar(LocalRequest request) {
         Local local = new Local();
-        String codigoIso2 = request.codigoPais();
 
         local.setId(null);
         local.setNome(request.nome());
 
-        if(codigoIso2 != null && !codigoIso2.isBlank()){
-            PaisDetalhesResponse pais = paisService.exibirPais(codigoIso2);
+        String codigoIso2 = request.codigoPais();
 
-            if(pais == null){
-                return null;
+        if(codigoIso2 != null && !codigoIso2.isBlank()){
+            Pais pais = paisService.findByCodigoPais(codigoIso2);
+
+            if(pais == null) {
+                pais = paisService.criar(codigoIso2);
             }
 
-            local.setCodigoPais(codigoIso2.toUpperCase());
-            local.setPais(pais.nomePais());
-            local.setLatitude(pais.latitude());
-            local.setLongitude(pais.longitude());
-        }
+               local.setPais(pais);
+            }
 
         repository.save(local);
         return LocalMapper.toResponse(local);
@@ -60,19 +60,17 @@ public class LocalServiceImpl implements LocalService{
     @Override
     public LocalResponse atualizar(Long id, LocalRequest request) {
         Local local = findById(id);
+
         if(request.nome() != null && !request.nome().isBlank()){
             local.setNome(request.nome());
         }
         if(request.codigoPais() != null && !request.codigoPais().isBlank()){
-            local.setCodigoPais(request.codigoPais());
+            Pais pais = paisService.findByCodigoPais(request.codigoPais());
 
-            PaisDetalhesResponse pais = paisService.exibirPais(request.codigoPais());
             if(pais == null){
-                return null;
+                pais = paisService.criar(request.codigoPais());
             }
-            local.setPais(pais.nomePais());
-            local.setLatitude(pais.latitude());
-            local.setLongitude(pais.longitude());
+            local.setPais(pais);
         }
 
         repository.save(local);

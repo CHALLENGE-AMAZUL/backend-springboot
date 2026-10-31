@@ -43,7 +43,6 @@ examples:
           {
             "id": 1,
             "nome": "Complexo radiológico de Iperó/Aramar (CTMSP)",
-            "cidade": null,
             "nomePais": "Brazil",
             "codigoPais": "BR",
             "latitude": "-10.00000000",
