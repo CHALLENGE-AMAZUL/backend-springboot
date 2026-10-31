@@ -2,14 +2,15 @@
 skinparam classAttributeIconSize 0
 hide empty members
 
-package com-amazul-fiap-api_springboot-model {
+package com-amazul-fiap-api-springboot-model {
 
   class Artigo {
     - Long id
     - String titulo
     - String resumo
-    - String corpo
-    + void setStatus(StatusArtigo)
+    - String aplicacaoReal
+    - String impactoSociedade
+    - Date atualizadoEm
   }
 
   class Fonte {
@@ -17,16 +18,16 @@ package com-amazul-fiap-api_springboot-model {
     - String titulo
     - String url
     - LocalDate dataConsulta
+    - Date atualizadoEm
   }
 
   class Local {
     - Long id
     - String nome
-    - String cidade
     - String nomePais
     - String codigoPais
-    - Double latitude
-    - Double longitude
+    - String latitude
+    - String longitude
   }
 
   class ArtigoFonte {
@@ -50,8 +51,11 @@ package com-amazul-fiap-api_springboot-model {
 
   ' Relacionamentos
   Artigo "*" --> "0..1" Local : local
-  Artigo "1" <-- "0..*" ArtigoFonte : artigo
-  Artigo "1" --> "0..*" ArtigoFonte : referencias
+
+  ' Composição devido ao cascade ALL + orphanRemoval em Artigo -> ArtigoFonte
+  Artigo "1" *-- "0..*" ArtigoFonte : referencias
+  ArtigoFonte "0..*" --> "1" Artigo : artigo
+
   Fonte "1" <-- "0..*" ArtigoFonte : fonte
   Fonte "1" --> "0..*" ArtigoFonte : artigos
 
