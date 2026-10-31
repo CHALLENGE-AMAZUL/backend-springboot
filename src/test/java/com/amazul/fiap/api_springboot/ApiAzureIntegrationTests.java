@@ -30,7 +30,7 @@ class ApiAzureIntegrationTests {
     private final HttpClient client = HttpClient.newHttpClient();
     private static final HttpServer countries = countryFixture();
 
-    // Respostas controladas: não comprovam acesso real à API de terceiros.
+    // Servidor local para exercitar a integração sem depender do serviço externo.
     private static HttpServer countryFixture() {
         try {
             HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
