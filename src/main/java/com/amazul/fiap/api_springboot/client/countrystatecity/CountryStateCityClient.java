@@ -2,6 +2,7 @@ package com.amazul.fiap.api_springboot.client.countrystatecity;
 
 import com.amazul.fiap.api_springboot.dto.response.PaisCodigoResponse;
 import com.amazul.fiap.api_springboot.dto.response.ApiPaisResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
@@ -11,7 +12,7 @@ import java.util.List;
 @Component
 public class CountryStateCityClient {
     private final RestClient restClient;
-    @org.springframework.beans.factory.annotation.Value("${api.country.key:}")
+    @Value("${api.country.key:}")
     private String apiKey;
 
     private void exigirChave() {
@@ -31,7 +32,7 @@ public class CountryStateCityClient {
                 .body(new ParameterizedTypeReference<>() {});
     }
 
-    public PaisDetalhesResponse buscarPais(String codigoPais){
+    public ApiPaisResponse buscarPais(String codigoPais){
         exigirChave();
         return restClient.get()
                 .uri("/countries/{codigoPais}", codigoPais.toUpperCase())
